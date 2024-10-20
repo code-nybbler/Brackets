@@ -8,13 +8,19 @@ $(document).on('click', '.menu .close-btn', function() {
 
 $(document).on('click', '#player-dialog .player-submit-btn', async function() {
     let playerName = $('#player-input').val();
-    if (playerName !== '') {        
+    let code = $('#code-inpute').val();
+
+    if (playerName !== '' && code !== '') {        
         let gamePlay = {
-            "Name": playerName.toString()
+            "Name": playerName.toString(),
+            "Code": code.toString()
         }
         await addPlayer(gamePlay);
         $('#player-dialog').removeClass('show');
         $('#game-container').show();
+    } else {
+        if (code === '') $('#code-input').css('border', '2px solid red');
+        if (playerName === '') $('#player-input').css('border', '2px solid red');
     }
 });
 

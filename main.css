@@ -54,7 +54,8 @@ body {
 }
 .menu .close-btn { position: absolute; top: 15px; right: 15px; height: 20px; width: 20px; padding: 0px 2px 4px 2px; }
 #player-dialog.show { visibility: visible; opacity: 1; }
-#player-dialog input { width: 90%; height: 200px; margin: auto; text-align: center; font-size: 7rem; display: block; }
+#player-dialog #player-input { width: 90%; height: 200px; margin: auto; text-align: center; font-size: 7rem; display: block; }
+#player-dialog #code-input { height: 50px; }
 #player-dialog button { width: 90%; height: 100px; margin: auto; margin-top: 15px; font-size: 3rem; }
 #toast-msg {
     visibility: hidden;
