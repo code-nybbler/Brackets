@@ -56,7 +56,7 @@ body {
 #player-dialog.show { visibility: visible; opacity: 1; }
 #player-dialog #player-input { width: 90%; height: 200px; margin: auto; text-align: center; font-size: 7rem; display: block; }
 #player-dialog #code-input { height: 50px; }
-#player-dialog button { width: 90%; height: 100px; margin: auto; margin-top: 15px; font-size: 3rem; }
+#player-dialog button { width: 90%; height: 100px; margin: auto; margin-top: 15px; font-size: 3rem; border: 2px solid; }
 #toast-msg {
     visibility: hidden;
     min-width: 250px;
@@ -116,6 +116,18 @@ body {
     color: #fff;
     position: absolute;
     bottom: -25px;
+}
+#audience {
+    display: block;
+    margin: auto;
+}
+.audience-member {
+    padding: 15px;
+    background-color: #000;
+    border-radius: 15px;
+    display: inline-block;
+    font-weight: 600;
+    color: #fff;
 }
 @keyframes spin {
     to {

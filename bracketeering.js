@@ -34,7 +34,7 @@ async function submitPlayerForm(playerType) {
             $('#game-container').show();
             
             if (playerType === 1) {
-                if (bracket.Status === 122430000) showToast('You\'ve joined the bracket!');
+                if (bracket.Status === '122430000') showToast('You\'ve joined the bracket!');
                 else showToast('This bracket is already underway! We added you to the audience.');
             } else showToast('You\'ve joined the audience!');
 
@@ -66,12 +66,81 @@ function addPlayer(player) {
 }
 
 function populateBracket() {
-    for (let p = 0; p < bracket.Players.length; p++) {
-        console.log(bracket.Players[p]);
+    let players = Object.values(bracket.Players).filter(p => p.Type === 1);
+    let audience = Object.values(bracket.Players).filter(p => p.Type === 2);
+
+    for (let player in audience) {
+        $('#audience').append(`<span class="audience-member">${player.Name}</span>`);
     }
+
+    $('#bracket').append(`
+        <tr>
+            <td><span class="player">${players[0].Name}</span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><span class="player">${players[4].Name}</span></td>
+        </tr>                            
+        <tr>
+            <td class="topNrightLine"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="topNleftLine"></td>
+        </tr>                    
+        <tr>
+            <td class="bottomNrightLine"><span class="player">${players[1].Name}</span></td>
+            <td class="topNrightLine"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="topNleftLine"></td>
+            <td class="bottomNleftLine"><span class="player">${players[5].Name}</span></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td class="bottomNleftLine"></td>
+            <td class="bottomLine"></td>
+            <td class="bottomNrightLine"></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><span class="player">${players[2].Name}</span></td>
+            <td class="rightLine"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="leftLine"></td>
+            <td><span class="player">${players[6].Name}</span></td>
+        </tr>
+        <tr>
+            <td class="topNrightLine"></td>
+            <td class="bottomNrightLine"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="bottomNleftLine"></td>
+            <td class="topNleftLine"></td>
+        </tr>
+        <tr>
+            <td class="bottomNrightLine"><span class="player">${players[3].Name}</span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="bottomNleftLine"><span class="player">${players[7].Name}</span></td>
+        </tr>`
+    );
 }
 
 function showToast(text) {
     $('#toast-msg').text(text).addClass('show');
-    setTimeout(function(){ $('#toast-msg').removeClass('show'); }, 3000);
+    setTimeout(function(){ $('#toast-msg').removeClass('show'); }, 5000);
 }
