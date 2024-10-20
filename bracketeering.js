@@ -27,19 +27,25 @@ async function submitPlayerForm(playerType) {
             "Type": playerType
         }
 
-        bracket = await addPlayer(player);
+        let result = await addPlayer(player);
 
-        if (bracket !== undefined && bracket !== null) {
-            $('#player-dialog').removeClass('show');
-            $('#game-container').show();
-            
-            if (playerType === 1) {
-                if (bracket.Status === 122430000) showToast('You\'ve joined the bracket!');
-                else showToast('This bracket is already underway! We added you to the audience.');
-            } else showToast('You\'ve joined the audience!');
+        if (result.error !== undefined) {
+            showToast(result.error.message);
+        } else {
+            bracket = result;
 
-            populateBracket();
-        } else showToast('An error has occurred.');
+            if (bracket !== undefined && bracket !== null) {
+                $('#player-dialog').removeClass('show');
+                $('#game-container').show();
+                
+                if (playerType === 1) {
+                    if (bracket.Status === 122430000) showToast('You\'ve joined the bracket!');
+                    else showToast('This bracket is already underway! We added you to the audience.');
+                } else showToast('You\'ve joined the audience!');
+
+                populateBracket();
+            } else showToast('An error has occurred.');
+        }
     } else {
         if (code === '') $('#code-input').css('border', '2px solid red');
         if (playerName === '') $('#player-input').css('border', '2px solid red');
@@ -55,10 +61,8 @@ function addPlayer(player) {
         req.onreadystatechange = function () {
             if (this.readyState === 4) {
                 req.onreadystatechange = null;
-                if (this.status === 200) {
-                    let result = JSON.parse(this.response);
-                    resolve(result);
-                }
+                let result = JSON.parse(this.response);
+                resolve(result);
             }
         };
         req.send(JSON.stringify(player));
