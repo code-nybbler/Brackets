@@ -1,3 +1,5 @@
+let bracket;
+
 $(document).ready(function() {
     $('#player-dialog').addClass('show');
 });
@@ -15,25 +17,19 @@ $(document).on('click', '#player-dialog .player-submit-btn', async function() {
             "Name": playerName.toString(),
             "Code": code.toString()
         }
-        await addPlayer(gamePlay);
-        $('#player-dialog').removeClass('show');
-        $('#game-container').show();
+
+        bracket = await addPlayer(gamePlay);
+
+        if (bracket !== undefined && bracket !== null) {
+            $('#player-dialog').removeClass('show');
+            $('#game-container').show();
+            populateBracket();
+        } else showToast('An error has occurred.');
     } else {
         if (code === '') $('#code-input').css('border', '2px solid red');
         if (playerName === '') $('#player-input').css('border', '2px solid red');
     }
 });
-
-function readScoreboard() {
-    $.ajax({
-        type: "GET",
-        url: "https://prod-56.westus.logic.azure.com:443/workflows/7534300353cb48ad892f6741046aeab8/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=JS-U_mvyGe_-PXwesvCPE7DA0oASww0h6h7D1RXM47Q",
-        success: function(data) {
-            scoreboard = data;
-            populateScoreboard();
-        }
-    });
-}
 
 function addPlayer(player) {
     return new Promise(resolve => {
@@ -52,6 +48,12 @@ function addPlayer(player) {
         };
         req.send(JSON.stringify(player));
     });
+}
+
+function populateBracket() {
+    for (let player in bracket.Players) {
+        console.log(player);
+    }
 }
 
 function showToast(text) {
