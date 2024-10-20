@@ -8,28 +8,43 @@ $(document).on('click', '.menu .close-btn', function() {
     $(this).closest('.menu').removeClass('show');
 });
 
-$(document).on('click', '#player-dialog .player-submit-btn', async function() {
+$(document).on('click', '#player-dialog .player-bracket-btn', function() {    
+    submitPlayerForm(1)
+});
+
+$(document).on('click', '#player-dialog .player-audience-btn', function() {    
+    submitPlayerForm(2)
+});
+
+async function submitPlayerForm(playerType) {
     let playerName = $('#player-input').val();
     let code = $('#code-input').val();
 
     if (playerName !== '' && code !== '') {        
-        let gamePlay = {
+        let player = {
             "Name": playerName.toString(),
-            "Code": code.toString()
+            "Code": code.toString(),
+            "Type": playerType
         }
 
-        bracket = await addPlayer(gamePlay);
+        bracket = await addPlayer(player);
 
         if (bracket !== undefined && bracket !== null) {
             $('#player-dialog').removeClass('show');
             $('#game-container').show();
+            
+            if (playerType === 1) {
+                if (bracket.Status === 122430000) showToast('You\'ve joined the bracket!');
+                else showToast('This bracket is already underway! We added you to the audience.');
+            } else showToast('You\'ve joined the audience!');
+
             populateBracket();
         } else showToast('An error has occurred.');
     } else {
         if (code === '') $('#code-input').css('border', '2px solid red');
         if (playerName === '') $('#player-input').css('border', '2px solid red');
     }
-});
+}
 
 function addPlayer(player) {
     return new Promise(resolve => {
