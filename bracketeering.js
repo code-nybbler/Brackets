@@ -67,8 +67,13 @@ function addPlayer(player) {
 
 function populateBracket() {
     debugger;
-    let players = bracket.Players.map(p => ({ 'Name': p.Name, 'Type': p.Type })).filter(p => p.Type === '122430000');
-    let audience = bracket.Players.map(p => ({ 'Name': p.Name, 'Type': p.Type })).filter(p => p.Type === '122430001');
+    let players = [], audience = [];
+
+    for (let p = 0; p < bracket.Players.length; p++) {
+        let player = bracket.Players[p];
+        if (player.Type === '122430000') players.push(player);
+        else audience.push(player);
+    }
 
     for (let player in audience) {
         $('#audience').append(`<span class="audience-member">${player.Name}</span>`);
