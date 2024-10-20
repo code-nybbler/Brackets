@@ -51,8 +51,8 @@ function addPlayer(player) {
 }
 
 function populateBracket() {
-    for (let player in bracket.Players) {
-        console.log(player);
+    for (let p = 0; p < bracket.Players.length; p++) {
+        console.log(bracket.Players[p]);
     }
 }
 
