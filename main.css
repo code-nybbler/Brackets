@@ -1,7 +1,7 @@
 body {
     background-color: rgb(251 235 204);
     font-family: 'Courier New', monospace;
-    background-image: url('./images/retro.webp');
+    background-image: url('./retro.webp');
     background-attachment: fixed;
     background-size: contain;
     background-repeat: no-repeat;
