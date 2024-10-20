@@ -8,7 +8,7 @@ $(document).on('click', '.menu .close-btn', function() {
 
 $(document).on('click', '#player-dialog .player-submit-btn', async function() {
     let playerName = $('#player-input').val();
-    let code = $('#code-inpute').val();
+    let code = $('#code-input').val();
 
     if (playerName !== '' && code !== '') {        
         let gamePlay = {
