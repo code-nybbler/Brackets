@@ -34,7 +34,7 @@ async function submitPlayerForm(playerType) {
             $('#game-container').show();
             
             if (playerType === 1) {
-                if (bracket.Status === '122430000') showToast('You\'ve joined the bracket!');
+                if (bracket.Status === 122430000) showToast('You\'ve joined the bracket!');
                 else showToast('This bracket is already underway! We added you to the audience.');
             } else showToast('You\'ve joined the audience!');
 
@@ -71,7 +71,7 @@ function populateBracket() {
 
     for (let p = 0; p < bracket.Players.length; p++) {
         let player = bracket.Players[p];
-        if (player.Type === '122430000') players.push(player);
+        if (player.Type === 122430000) players.push(player);
         else audience.push(player);
     }
 
