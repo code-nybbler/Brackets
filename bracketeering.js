@@ -22,23 +22,26 @@ $(document).on('click', '#player-dialog .player-audience-btn', function() {
 
 async function submitCodeForm() {
     let code = $('#code-input').val();
-    let result = await getBracket(code);
 
-    if (result.error !== undefined) {
-        showToast(result.error.message);
-    } else {
-        bracket = result;
-        if (bracket !== undefined && bracket !== null) {            
-            $('#code-dialog').removeClass('show');
+    if (code !== '') {
+        let result = await getBracket(code);
 
-            if (bracket.Status === 122430000) { // New bracket
-                $('#player-dialog').addClass('show');
-            } else { // Existing bracket
-                populateBracket();
-                $('#game-container').show();
-            }
-        } else showToast('An error has occurred.');
-    }
+        if (result.error !== undefined) {
+            showToast(result.error.message);
+        } else {
+            bracket = result;
+            if (bracket !== undefined && bracket !== null) {            
+                $('#code-dialog').removeClass('show');
+
+                if (bracket.Status === 122430000) { // New bracket
+                    $('#player-dialog').addClass('show');
+                } else { // Existing bracket
+                    populateBracket();
+                    $('#game-container').show();
+                }
+            } else showToast('An error has occurred.');
+        }
+    } else $('#code-input').css('border', '2px solid red');
 }
 
 function getBracket(code) {
@@ -60,9 +63,8 @@ function getBracket(code) {
 
 async function submitPlayerForm(playerType) {
     let playerName = $('#player-input').val();
-    let code = $('#code-input').val();
 
-    if (playerName !== '' && code !== '') {        
+    if (playerName !== '') {        
         let player = {
             "Name": playerName.toString(),
             "Code": code.toString(),
@@ -91,10 +93,7 @@ async function submitPlayerForm(playerType) {
             $('#player-dialog').removeClass('show');
             $('#game-container').show();
         }
-    } else {
-        if (code === '') $('#code-input').css('border', '2px solid red');
-        if (playerName === '') $('#player-input').css('border', '2px solid red');
-    }
+    } else $('#player-input').css('border', '2px solid red');
 }
 
 function addPlayer(player) {
