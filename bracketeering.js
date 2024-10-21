@@ -1,4 +1,4 @@
-let bracket;
+let bracket, code;
 
 $(document).ready(function() {
     $('#code-dialog').addClass('show');
@@ -21,7 +21,7 @@ $(document).on('click', '#player-dialog .player-audience-btn', function() {
 });
 
 async function submitCodeForm() {
-    let code = $('#code-input').val();
+    code = $('#code-input').val();
 
     if (code !== '') {
         let result = await getBracket(code);
@@ -67,6 +67,7 @@ async function submitPlayerForm(playerType) {
     if (playerName !== '') {        
         let player = {
             "Name": playerName.toString(),
+            "Code": code.toString(),
             "Type": playerType
         }
 
