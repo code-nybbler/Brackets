@@ -1,20 +1,62 @@
 let bracket;
 
 $(document).ready(function() {
-    $('#player-dialog').addClass('show');
+    $('#code-dialog').addClass('show');
 });
 
 $(document).on('click', '.menu .close-btn', function() {
     $(this).closest('.menu').removeClass('show');
 });
 
+$(document).on('click', '#code-dialog .code-input-btn', function() {    
+    submitCodeForm();
+});
+
 $(document).on('click', '#player-dialog .player-bracket-btn', function() {    
-    submitPlayerForm(1)
+    submitPlayerForm(1);
 });
 
 $(document).on('click', '#player-dialog .player-audience-btn', function() {    
-    submitPlayerForm(2)
+    submitPlayerForm(2);
 });
+
+async function submitCodeForm() {
+    let code = $('#code-input').val();
+    let result = await getBracket(code);
+
+    if (result.error !== undefined) {
+        showToast(result.error.message);
+    } else {
+        bracket = result;
+        if (bracket !== undefined && bracket !== null) {            
+            $('#code-dialog').removeClass('show');
+
+            if (bracket.Status === 122430000) { // New bracket
+                $('#player-dialog').addClass('show');
+            } else { // Existing bracket
+                populateBracket();
+                $('#game-container').show();
+            }
+        } else showToast('An error has occurred.');
+    }
+}
+
+function getBracket(code) {
+    return new Promise(resolve => {
+        let flowURL = 'https://prod-143.westus.logic.azure.com:443/workflows/8691dd8648704bf5bfdc55ba889242ee/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=ZWUQDgXwALHY0_euftQqs1IxKtDSvRJRwM609PxgsAE';
+        let req = new XMLHttpRequest();
+        req.open("POST", flowURL, true);
+        req.setRequestHeader("Content-Type", "application/json");
+        req.onreadystatechange = function () {
+            if (this.readyState === 4) {
+                req.onreadystatechange = null;
+                let result = JSON.parse(this.response);
+                resolve(result);
+            }
+        };
+        req.send(JSON.stringify(`{ "Code": ${code} }`));
+    });
+}
 
 async function submitPlayerForm(playerType) {
     let playerName = $('#player-input').val();
@@ -31,20 +73,23 @@ async function submitPlayerForm(playerType) {
 
         if (result.error !== undefined) {
             showToast(result.error.message);
-        } else {
-            bracket = result;
-
-            if (bracket !== undefined && bracket !== null) {
-                $('#player-dialog').removeClass('show');
-                $('#game-container').show();
-                
-                if (playerType === 1) {
-                    if (bracket.Status === 122430000) showToast('You\'ve joined the bracket!');
-                    else showToast('This bracket is already underway! We added you to the audience.');
-                } else showToast('You\'ve joined the audience!');
-
-                populateBracket();
-            } else showToast('An error has occurred.');
+        } else {            
+            if (playerType === 1) {
+                if (bracket.Status === 122430000) {
+                    bracket.Players.push(player);
+                    showToast('You\'ve joined the bracket!');
+                } else {
+                    bracket.Audience.push(player);
+                    showToast('This bracket is already underway! We added you to the audience.');
+                }
+            } else {
+                bracket.Audience.push(player);
+                showToast('You\'ve joined the audience!');
+            }
+            
+            populateBracket();
+            $('#player-dialog').removeClass('show');
+            $('#game-container').show();
         }
     } else {
         if (code === '') $('#code-input').css('border', '2px solid red');

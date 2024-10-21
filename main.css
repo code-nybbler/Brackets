@@ -53,10 +53,11 @@ body {
     rotate: -5deg;
 }
 .menu .close-btn { position: absolute; top: 15px; right: 15px; height: 20px; width: 20px; padding: 0px 2px 4px 2px; }
+#code-dialog.show,
 #player-dialog.show { visibility: visible; opacity: 1; }
 #player-dialog #player-input { width: 90%; height: 200px; margin: auto; text-align: center; font-size: 7rem; display: block; }
-#player-dialog #code-input { height: 50px; }
 #player-dialog button { width: 90%; height: 100px; margin: auto; margin-top: 15px; font-size: 3rem; border: 2px solid; }
+#code-dialog #code-input { height: 50px; }
 #toast-msg {
     visibility: hidden;
     min-width: 250px;
@@ -111,11 +112,12 @@ body {
     background-color: #000;
     border-radius: 15px;
     display: block;
-    margin: auto;
     font-weight: 600;
     color: #fff;
     position: absolute;
     bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 #audience {
     display: flex;
