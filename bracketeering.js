@@ -57,7 +57,7 @@ function getBracket(code) {
                 resolve(result);
             }
         };
-        req.send({ "Code": code });
+        req.send(JSON.stringify({ "Code": code }));
     });
 }
 
