@@ -67,7 +67,6 @@ async function submitPlayerForm(playerType) {
     if (playerName !== '') {        
         let player = {
             "Name": playerName.toString(),
-            "Code": code.toString(),
             "Type": playerType
         }
 
