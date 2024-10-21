@@ -42,21 +42,21 @@ body {
     padding: 40px;
     z-index: 99;
     position: fixed;
-    top: 10%;
+    top: 40%;
     left: -5%;
+    transform: translateY(-50%);
     visibility: hidden;
     opacity: 0;
     transition: visibility 0.3s linear, opacity 0.3s linear;
-    width: 110%;
-    height: 70%;
+    width: 110%;    
     text-align: center;
     rotate: -5deg;
 }
+.menu button { width: 90%; height: 100px; margin: auto; margin-top: 15px; font-size: 3rem; border: 2px solid; }
 .menu .close-btn { position: absolute; top: 15px; right: 15px; height: 20px; width: 20px; padding: 0px 2px 4px 2px; }
 #code-dialog.show,
 #player-dialog.show { visibility: visible; opacity: 1; }
 #player-dialog #player-input { width: 90%; height: 200px; margin: auto; text-align: center; font-size: 7rem; display: block; }
-#player-dialog button { width: 90%; height: 100px; margin: auto; margin-top: 15px; font-size: 3rem; border: 2px solid; }
 #code-dialog #code-input { height: 50px; }
 #toast-msg {
     visibility: hidden;
