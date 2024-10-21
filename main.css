@@ -118,8 +118,9 @@ body {
     bottom: -25px;
 }
 #audience {
-    display: block;
-    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .audience-member {
     padding: 15px;
@@ -128,6 +129,7 @@ body {
     display: inline-block;
     font-weight: 600;
     color: #fff;
+    margin: 5px;
 }
 @keyframes spin {
     to {
