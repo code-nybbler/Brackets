@@ -70,14 +70,7 @@ function addPlayer(player) {
 }
 
 function populateBracket() {
-    debugger;
-    let players = [], audience = [];
-
-    for (let p = 0; p < bracket.Players.length; p++) {
-        let player = bracket.Players[p];
-        if (player.Type === 122430000) players.push(player);
-        else audience.push(player);
-    }
+    let players = bracket.Players, audience = bracket.Audience;
 
     $('#bracket').append(`
         <tr>
