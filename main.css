@@ -154,6 +154,9 @@ body {
     align-items: center;
     justify-content: center;
     border: 2px solid black;
+    max-width: 800px;
+    flex-wrap: wrap;
+    border-radius: 30px;
 }
 .audience-member {
     padding: 15px;
@@ -163,6 +166,7 @@ body {
     font-weight: 600;
     color: #fbebcc;
     margin: 5px;
+    -webkit-text-stroke: 0;
 }
 @keyframes spin {
     to {
