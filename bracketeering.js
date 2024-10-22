@@ -21,7 +21,7 @@ $(document).on('click', '#code-dialog .create-bracket-btn', async function() {
         if (bracket !== undefined && bracket !== null) {
             $('#code-dialog').removeClass('show');
             $('#player-dialog').addClass('show');
-            $('.player-audience-btn').hide();
+            $('.player-audience-btn').remove();
         }
     }
 });
@@ -84,9 +84,10 @@ async function submitCodeForm() {
             if (bracket !== undefined && bracket !== null) {
                 $('#code-dialog').removeClass('show');
 
-                if (bracket.Status === 122430000) { // New bracket
-                    $('#player-dialog').addClass('show');
+                if (bracket.Status !== 122430000) { // Bracket is in progress
+                    $('.player-bracket-btn').remove();
                 }
+                $('#player-dialog').addClass('show');
             } else showToast('An error has occurred.');
         }
     } else $('#code-input').addClass('input-error');
