@@ -184,6 +184,8 @@ function addPlayer(player) {
 function populateBracket() {
     let players = bracket.Players, audience = bracket.Audience;
 
+    $('#prompt p').text(bracket.Question1);
+
     $('#bracket').append(`
         <tr>
             <td><span class="player">${players.length > 0 ? players[0].Answer1 : '?'}</span></td>
