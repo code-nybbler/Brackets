@@ -197,12 +197,10 @@ function populateBracket() {
         $(`#p${p+1}`).append(`<span class="player">${playerBlurb}</span>`);
     }
 
-    $('#audience-container').text('Audience');
-    let $audience = $('<div class="audience"></div>');
+    $('#audience-container').text('Audience').append('<div id="audience"></div>');
     for (let p = 0; p < audience.length; p++) {
-        $audience.append(`<span class="audience-member">${audience[p].Name}</span>`);
+        $('#audience').append(`<span class="audience-member">${audience[p].Name}</span>`);
     }
-    $('#audience-container').append($audience);
 
     $('#game-container').show();
 }
