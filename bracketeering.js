@@ -86,9 +86,6 @@ async function submitCodeForm() {
 
                 if (bracket.Status === 122430000) { // New bracket
                     $('#player-dialog').addClass('show');
-                } else { // Existing bracket
-                    if (player.Type === 1) $('#welcome-dialog').addClass('show');
-                    else populateBracket();
                 }
             } else showToast('An error has occurred.');
         }
@@ -199,7 +196,7 @@ function populateBracket() {
         $(`#p${p}`).append(`<span class="player">${playerBlurb}</span>`);
     }
 
-    $('#audience-container').text('Audience').append('<div id="audience"></div>');
+    $('#audience-container').text('Audience').append('<div class="audience"></div>');
     for (let p = 0; p < audience.length; p++) {
         $('#audience').append(`<span class="audience-member">${audience[p].Name}</span>`);
     }
