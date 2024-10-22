@@ -46,8 +46,8 @@ async function submitAnswerForm(answer) {
             showToast(result.error.message);
             $('#answer-input').addClass('input-error');
         } else {
-            $(this).closest('.menu').removeClass('show');
-
+            $('#question-dialog').closest('.menu').removeClass('show');
+            populateBracket();
         }
     } else $('#answer-input').addClass('input-error');
 }
@@ -159,8 +159,6 @@ async function submitPlayerForm(playerType) {
             
             $('#player-dialog').removeClass('show');
             $('#game-container').show();
-            populateBracket();
-
             if (player.Type === 1) $('#welcome-dialog').addClass('show');
         }
     } else $('#player-input').addClass('input-error');
@@ -188,13 +186,13 @@ function populateBracket() {
 
     $('#bracket').append(`
         <tr>
-            <td><span class="player">${players.length > 0 ? players[0].Name : '?'}</span></td>
+            <td><span class="player">${players.length > 0 ? players[0].Answer1 : '?'}</span></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
-            <td><span class="player">${players.length > 4 ? players[4].Name : '?'}</span></td>
+            <td><span class="player">${players.length > 4 ? players[4].Answer1 : '?'}</span></td>
         </tr>
         <tr>
             <td class="topNrightLine"></td>
@@ -206,13 +204,13 @@ function populateBracket() {
             <td class="topNleftLine"></td>
         </tr>
         <tr>
-            <td class="bottomNrightLine"><span class="player">${players.length > 1 ? players[1].Name : '?'}</span></td>
+            <td class="bottomNrightLine"><span class="player">${players.length > 1 ? players[1].Answer1 : '?'}</span></td>
             <td class="topNrightLine"></td>
             <td></td>
             <td></td>
             <td></td>
             <td class="topNleftLine"></td>
-            <td class="bottomNleftLine"><span class="player">${players.length > 5 ? players[5].Name : '?'}</span></td>
+            <td class="bottomNleftLine"><span class="player">${players.length > 5 ? players[5].Answer1 : '?'}</span></td>
         </tr>
         <tr>
             <td></td>
@@ -224,13 +222,13 @@ function populateBracket() {
             <td></td>
         </tr>
         <tr>
-            <td><span class="player">${players.length > 2 ? players[2].Name : '?'}</span></td>
+            <td><span class="player">${players.length > 2 ? players[2].Answer1 : '?'}</span></td>
             <td class="rightLine"></td>
             <td></td>
             <td></td>
             <td></td>
             <td class="leftLine"></td>
-            <td><span class="player">${players.length > 6 ? players[6].Name : '?'}</span></td>
+            <td><span class="player">${players.length > 6 ? players[6].Answer1 : '?'}</span></td>
         </tr>
         <tr>
             <td class="topNrightLine"></td>
@@ -242,13 +240,13 @@ function populateBracket() {
             <td class="topNleftLine"></td>
         </tr>
         <tr>
-            <td class="bottomNrightLine"><span class="player">${players.length > 3 ? players[3].Name : '?'}</span></td>
+            <td class="bottomNrightLine"><span class="player">${players.length > 3 ? players[3].Answer1 : '?'}</span></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
-            <td class="bottomNleftLine"><span class="player">${players.length > 7 ? players[7].Name : '?'}</span></td>
+            <td class="bottomNleftLine"><span class="player">${players.length > 7 ? players[7].Answer1 : '?'}</span></td>
         </tr>`
     );
 
