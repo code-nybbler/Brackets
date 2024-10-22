@@ -54,7 +54,7 @@ async function submitAnswerForm(answer) {
 
 function submitAnswer(answer) {
     return new Promise(resolve => {
-        let flowURL = 'https://prod-57.westus.logic.azure.com:443/workflows/c554fb64e21b43b886f3a4be7421d091/triggers/manual/paths/invoke?api-version=2016-06-01';
+        let flowURL = 'https://prod-57.westus.logic.azure.com:443/workflows/c554fb64e21b43b886f3a4be7421d091/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=_Lw4U86l7JdXcmGkbdOBMtjimf6UK8kUV9fUEDsdtrM';
         let req = new XMLHttpRequest();
         req.open("POST", flowURL, true);
         req.setRequestHeader("Content-Type", "application/json");
