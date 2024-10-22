@@ -87,7 +87,6 @@ async function submitCodeForm() {
                 if (bracket.Status === 122430000) { // New bracket
                     $('#player-dialog').addClass('show');
                 } else { // Existing bracket
-                    $('#game-container').show();
                     if (player.Type === 1) $('#welcome-dialog').addClass('show');
                     else populateBracket();
                 }
@@ -161,7 +160,6 @@ async function submitPlayerForm(playerType) {
             }
             
             $('#player-dialog').removeClass('show');
-            $('#game-container').show();
             if (player.Type === 1) $('#welcome-dialog').addClass('show');
         }
     } else $('#player-input').addClass('input-error');
@@ -188,76 +186,25 @@ function populateBracket() {
     let players = bracket.Players, audience = bracket.Audience;
 
     $('#prompt p').text(bracket.Question1);
+    
+    for (let p = 0; p < players.length; p++) {
+        let playerBlurb = '';
+        switch(bracket.Status) {
+            case 122430000: playerBlurb = players[p].Name; break;
+            case 122430001: playerBlurb = players[p].Answer1 !== null ? players[p].Answer1 : '?'; break;
+            case 122430002: playerBlurb = players[p].Answer2 !== null ? players[p].Answer2 : '?'; break;
+            case 122430003: playerBlurb = players[p].Answer3 !== null ? players[p].Answer3 : '?'; break;
+            default: break;
+        }
+        $(`#p${p}`).append(`<span class="player">${playerBlurb}</span>`);
+    }
 
-    $('#bracket').append(`
-        <tr>
-            <td><span class="player">${players.length > 0 ? players[0].Answer1 !== null ? players[0].Answer1 : '?' : '?'}</span></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><span class="player">${players.length > 4 ? players[4].Answer1 !== null ? players[4].Answer1 : '?' : '?'}</span></td>
-        </tr>
-        <tr>
-            <td class="topNrightLine"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td class="topNleftLine"></td>
-        </tr>
-        <tr>
-            <td class="bottomNrightLine"><span class="player">${players.length > 1 ? players[1].Answer1 !== null ? players[1].Answer1 : '?' : '?'}</span></td>
-            <td class="topNrightLine"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td class="topNleftLine"></td>
-            <td class="bottomNleftLine"><span class="player">${players.length > 5 ? players[5].Answer1 !== null ? players[5].Answer1 : '?' : '?'}</span></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td class="bottomNleftLine"></td>
-            <td class="bottomLine"></td>
-            <td class="bottomNrightLine"></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td><span class="player">${players.length > 2 ? players[2].Answer1 !== null ? players[2].Answer1 : '?' : '?'}</span></td>
-            <td class="rightLine"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td class="leftLine"></td>
-            <td><span class="player">${players.length > 6 ? players[6].Answer1 !== null ? players[6].Answer1 : '?' : '?'}</span></td>
-        </tr>
-        <tr>
-            <td class="topNrightLine"></td>
-            <td class="bottomNrightLine"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td class="bottomNleftLine"></td>
-            <td class="topNleftLine"></td>
-        </tr>
-        <tr>
-            <td class="bottomNrightLine"><span class="player">${players.length > 3 ? players[3].Answer1 !== null ? players[3].Answer1 : '?' : '?'}</span></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td class="bottomNleftLine"><span class="player">${players.length > 7 ? players[7].Answer1 !== null ? players[7].Answer1 : '?' : '?'}</span></td>
-        </tr>`
-    );
-
+    $('#audience-container').text('Audience');
     for (let p = 0; p < audience.length; p++) {
         $('#audience').append(`<span class="audience-member">${audience[p].Name}</span>`);
     }
+
+    $('#game-container').show();
 }
 
 function showToast(text) {

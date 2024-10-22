@@ -126,7 +126,7 @@ body {
     #player-dialog input { width: 90%; font-size: 40px; margin-top: 15px; border: 2px solid; border-radius: 15px; }
 }
 #bracket th,
-#bracket td { text-align: center; vertical-align: middle; height: 50px; border: none; position: relative; }
+#bracket td { text-align: center; vertical-align: middle; height: 50px; border: none; position: relative; width: 5%; }
 .player {
     width: 80%;
     padding: 15px;
