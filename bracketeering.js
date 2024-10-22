@@ -1,4 +1,4 @@
-let bracket, code;
+let bracket, code, player;
 
 $(document).ready(function() {
     $('#code-dialog').addClass('show');
@@ -12,7 +12,7 @@ $(document).on('click', '#code-dialog .code-input-btn', function() {
     submitCodeForm();
 });
 
-$(document).on('click', '#player-dialog .player-bracket-btn', function() {    
+$(document).on('click', '#player-dialog .player-bracket-btn', function() {
     submitPlayerForm(1);
 });
 
@@ -36,8 +36,14 @@ async function submitCodeForm() {
                 if (bracket.Status === 122430000) { // New bracket
                     $('#player-dialog').addClass('show');
                 } else { // Existing bracket
-                    populateBracket();
                     $('#game-container').show();
+                    if (player.Type === 1) $('#welcome-dialog').show();
+                    else {
+                        populateBracket();
+                        setTimeout(function() {
+                            $('#question-dialog').addClass('show');
+                        }, 1000);
+                    }
                 }
             } else showToast('An error has occurred.');
         }
@@ -65,7 +71,7 @@ async function submitPlayerForm(playerType) {
     let playerName = $('#player-input').val();
 
     if (playerName !== '') {        
-        let player = {
+        player = {
             "Name": playerName.toString(),
             "Code": code.toString(),
             "Type": playerType
@@ -89,9 +95,15 @@ async function submitPlayerForm(playerType) {
                 showToast('You\'ve joined the audience!');
             }
             
-            populateBracket();
             $('#player-dialog').removeClass('show');
             $('#game-container').show();
+            if (player.Type === 1) $('#welcome-dialog').show();
+            else {
+                populateBracket();
+                setTimeout(function() {
+                    $('#question-dialog').addClass('show');
+                }, 1000);
+            }
         }
     } else $('#player-input').css('border', '2px solid red');
 }
@@ -125,7 +137,7 @@ function populateBracket() {
             <td></td>
             <td></td>
             <td><span class="player">${players.length > 4 ? players[4].Name : '?'}</span></td>
-        </tr>                            
+        </tr>
         <tr>
             <td class="topNrightLine"></td>
             <td></td>
@@ -134,7 +146,7 @@ function populateBracket() {
             <td></td>
             <td></td>
             <td class="topNleftLine"></td>
-        </tr>                    
+        </tr>
         <tr>
             <td class="bottomNrightLine"><span class="player">${players.length > 1 ? players[1].Name : '?'}</span></td>
             <td class="topNrightLine"></td>

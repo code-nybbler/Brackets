@@ -82,17 +82,28 @@
             <div id="audience"></div>
             <div id="toast-msg"></div>
         </div>        
-        <div class="menu" id="code-dialog">
+        <div class="menu strike-menu" id="code-dialog">
             <h1>Enter code
                 <input type="text" id="code-input" placeholder="ABCD">
             </h1>
             <button type="button" class="btn btn-outline-success code-input-btn">Find Bracket</button>
         </div>
-        <div class="menu" id="player-dialog">
+        <div class="menu strike-menu" id="player-dialog">
             <h1>Join the bracket!</h1><hr>
             <input type="text" id="player-input" placeholder="John Doe">
             <button type="button" class="btn btn-outline-success player-bracket-btn">Join Bracket</button>
             <button type="button" class="btn btn-outline-light player-audience-btn">Join Audience</button>
+        </div>
+        <div class="menu" id="welcome-dialog">
+            <button type="button" class="btn btn-outline-danger close-btn"><span style="line-height: 0;">&#215;</span></button>
+            <h1>Welcome to the bracket!</h1><hr>
+            <p>You and the other players will be competing through 3 rounds. May the best answer win!</p>
+        </div>        
+        <div class="menu" id="question-dialog">
+            <h1>Answer the prompt</h1><hr>
+            <p>Something or someone you wouldn't want to be stuck in a cage with:</p>
+            <input type="text" id="answer-input">
+            <button type="button" class="btn btn-outline-success answer-submit-btn">Submit Answer</button>
         </div>
     </body>
 </html>
