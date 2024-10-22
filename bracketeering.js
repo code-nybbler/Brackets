@@ -27,7 +27,7 @@ $(document).on('click', '#code-dialog .create-bracket-btn', async function() {
 });
 
 $(document).on('click', '#question-dialog .answer-submit-btn', function() {
-    let answer = $(this).closest('.menu').find('input').text();
+    let answer = $(this).closest('.menu').find('textarea').val();
     submitAnswerForm(answer);
 });
 
