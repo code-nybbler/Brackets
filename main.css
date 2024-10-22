@@ -59,7 +59,7 @@ body {
 #welcome-dialog.show,
 #question-dialog.show { visibility: visible; opacity: 1; }
 #player-dialog #player-input { width: 90%; height: 200px; margin: auto; text-align: center; font-size: 7rem; display: block; }
-#question-dialog #answer-input { width: 90%; height: 200px; margin: auto; text-align: center; font-size: 4rem; display: block; }
+#question-dialog #answer-input { width: 90%; margin: auto; text-align: center; font-size: 3rem; display: block; }
 #code-dialog #code-input { height: 50px; }
 .input-error { border: 2px solid red; }
 #toast-msg {
