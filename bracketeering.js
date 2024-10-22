@@ -190,13 +190,13 @@ function populateBracket() {
 
     $('#bracket').append(`
         <tr>
-            <td><span class="player">${players.length > 0 ? players[0].Answer1 !== 'null' ? players[0].Answer1 : '?' : '?'}</span></td>
+            <td><span class="player">${players.length > 0 ? players[0].Answer1 !== null ? players[0].Answer1 : '?' : '?'}</span></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
-            <td><span class="player">${players.length > 4 ? players[4].Answer1 !== 'null' ? players[4].Answer1 : '?' : '?'}</span></td>
+            <td><span class="player">${players.length > 4 ? players[4].Answer1 !== null ? players[4].Answer1 : '?' : '?'}</span></td>
         </tr>
         <tr>
             <td class="topNrightLine"></td>
@@ -208,13 +208,13 @@ function populateBracket() {
             <td class="topNleftLine"></td>
         </tr>
         <tr>
-            <td class="bottomNrightLine"><span class="player">${players.length > 1 ? players[1].Answer1 !== 'null' ? players[1].Answer1 : '?' : '?'}</span></td>
+            <td class="bottomNrightLine"><span class="player">${players.length > 1 ? players[1].Answer1 !== null ? players[1].Answer1 : '?' : '?'}</span></td>
             <td class="topNrightLine"></td>
             <td></td>
             <td></td>
             <td></td>
             <td class="topNleftLine"></td>
-            <td class="bottomNleftLine"><span class="player">${players.length > 5 ? players[5].Answer1 !== 'null' ? players[5].Answer1 : '?' : '?'}</span></td>
+            <td class="bottomNleftLine"><span class="player">${players.length > 5 ? players[5].Answer1 !== null ? players[5].Answer1 : '?' : '?'}</span></td>
         </tr>
         <tr>
             <td></td>
@@ -226,13 +226,13 @@ function populateBracket() {
             <td></td>
         </tr>
         <tr>
-            <td><span class="player">${players.length > 2 ? players[2].Answer1 !== 'null' ? players[2].Answer1 : '?' : '?'}</span></td>
+            <td><span class="player">${players.length > 2 ? players[2].Answer1 !== null ? players[2].Answer1 : '?' : '?'}</span></td>
             <td class="rightLine"></td>
             <td></td>
             <td></td>
             <td></td>
             <td class="leftLine"></td>
-            <td><span class="player">${players.length > 6 ? players[6].Answer1 !== 'null' ? players[6].Answer1 : '?' : '?'}</span></td>
+            <td><span class="player">${players.length > 6 ? players[6].Answer1 !== null ? players[6].Answer1 : '?' : '?'}</span></td>
         </tr>
         <tr>
             <td class="topNrightLine"></td>
@@ -244,13 +244,13 @@ function populateBracket() {
             <td class="topNleftLine"></td>
         </tr>
         <tr>
-            <td class="bottomNrightLine"><span class="player">${players.length > 3 ? players[3].Answer1 !== 'null' ? players[3].Answer1 : '?' : '?'}</span></td>
+            <td class="bottomNrightLine"><span class="player">${players.length > 3 ? players[3].Answer1 !== null ? players[3].Answer1 : '?' : '?'}</span></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
-            <td class="bottomNleftLine"><span class="player">${players.length > 7 ? players[7].Answer1 !== 'null' ? players[7].Answer1 : '?' : '?'}</span></td>
+            <td class="bottomNleftLine"><span class="player">${players.length > 7 ? players[7].Answer1 !== null ? players[7].Answer1 : '?' : '?'}</span></td>
         </tr>`
     );
 
