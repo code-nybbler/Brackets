@@ -44,7 +44,7 @@ async function submitCodeForm() {
                     $('#player-dialog').addClass('show');
                 } else { // Existing bracket
                     $('#game-container').show();
-                    if (player.Type === 1) $('#welcome-dialog').show();
+                    if (player.Type === 1) $('#welcome-dialog').addClass('show');
                     else populateBracket();
                 }
             } else showToast('An error has occurred.');
@@ -116,9 +116,10 @@ async function submitPlayerForm(playerType) {
             
             $('#player-dialog').removeClass('show');
             $('#game-container').show();
-            if (player.Type === 1) $('#welcome-dialog').show();
+            populateBracket();
+
+            if (player.Type === 1) $('#welcome-dialog').addClass('show');
             else {
-                populateBracket();
                 setTimeout(function() {
                     $('#question-dialog').addClass('show');
                 }, 1000);
