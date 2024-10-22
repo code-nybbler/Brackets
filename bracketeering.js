@@ -1,10 +1,15 @@
 let bracket, player;
 
 $(document).ready(function() { $('#code-dialog').addClass('show'); });
-$(document).on('click', '.menu .close-btn', function() { $(this).closest('.menu').removeClass('show'); });
 $(document).on('click', '#code-dialog .code-input-btn', function() { submitCodeForm(); });
 $(document).on('click', '#player-dialog .player-bracket-btn', function() { submitPlayerForm(1); });
 $(document).on('click', '#player-dialog .player-audience-btn', function() { submitPlayerForm(2); });
+$(document).on('click', '#welcome-dialog .welcome-confirm-btn', function() {
+    $(this).closest('.menu').removeClass('show');
+    setTimeout(function() {
+        $('#question-dialog').addClass('show');
+    }, 1000);
+});
 
 $(document).on('click', '#code-dialog .create-bracket-btn', async function() {
     let result = await createBracket();
@@ -119,11 +124,6 @@ async function submitPlayerForm(playerType) {
             populateBracket();
 
             if (player.Type === 1) $('#welcome-dialog').addClass('show');
-            else {
-                setTimeout(function() {
-                    $('#question-dialog').addClass('show');
-                }, 1000);
-            }
         }
     } else $('#player-input').css('border', '2px solid red');
 }
