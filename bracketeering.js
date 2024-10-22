@@ -134,8 +134,8 @@ async function submitPlayerForm(playerType) {
 
     if (playerName !== '') {
         player = {
-            "Name": playerName.toString(),
-            "Code": bracket.Code.toString(),
+            "Name": playerName.toString().toUpperCase(),
+            "Code": bracket.Code.toString().toUpperCase(),
             "Type": playerType
         }
 
