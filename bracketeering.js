@@ -46,6 +46,7 @@ async function submitAnswerForm(answer) {
             showToast(result.error.message);
             $('#answer-input').addClass('input-error');
         } else {
+            player.Answer1 = answer;
             $('#question-dialog').closest('.menu').removeClass('show');
             populateBracket();
         }
