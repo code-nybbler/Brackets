@@ -1,27 +1,34 @@
-let bracket, code, player;
+let bracket, player;
 
-$(document).ready(function() {
-    $('#code-dialog').addClass('show');
+$(document).ready(function() { $('#code-dialog').addClass('show'); });
+$(document).on('click', '.menu .close-btn', function() { $(this).closest('.menu').removeClass('show'); });
+$(document).on('click', '#code-dialog .code-input-btn', function() { submitCodeForm(); });
+$(document).on('click', '#player-dialog .player-bracket-btn', function() { submitPlayerForm(1); });
+$(document).on('click', '#player-dialog .player-audience-btn', function() { submitPlayerForm(2); });
+
+$(document).on('click', '#code-dialog .create-bracket-btn', async function() {
+    let result = await createBracket();
+    if (result.error !== undefined) {
+        showToast(result.error.message);
+    } else {
+        bracket = result;
+        if (bracket !== undefined && bracket !== null) {
+            $('#code-dialog').removeClass('show');
+            $('#player-dialog').addClass('show');
+            $('.player-audience-btn').hide();
+        }
+    }
 });
 
-$(document).on('click', '.menu .close-btn', function() {
-    $(this).closest('.menu').removeClass('show');
-});
-
-$(document).on('click', '#code-dialog .code-input-btn', function() {    
-    submitCodeForm();
-});
-
-$(document).on('click', '#player-dialog .player-bracket-btn', function() {
-    submitPlayerForm(1);
-});
-
-$(document).on('click', '#player-dialog .player-audience-btn', function() {    
-    submitPlayerForm(2);
-});
+async function getPrompts(filePath) {
+    return fetch(filePath)
+    .then(response => { return response.text(); })
+    .then(data => { return data.split('\r\n'); })
+    .catch(error => { console.error("Error reading file:", error); });
+}
 
 async function submitCodeForm() {
-    code = $('#code-input').val();
+    let code = $('#code-input').val();
 
     if (code !== '') {
         let result = await getBracket(code);
@@ -30,7 +37,7 @@ async function submitCodeForm() {
             showToast(result.error.message);
         } else {
             bracket = result;
-            if (bracket !== undefined && bracket !== null) {            
+            if (bracket !== undefined && bracket !== null) {
                 $('#code-dialog').removeClass('show');
 
                 if (bracket.Status === 122430000) { // New bracket
@@ -38,16 +45,28 @@ async function submitCodeForm() {
                 } else { // Existing bracket
                     $('#game-container').show();
                     if (player.Type === 1) $('#welcome-dialog').show();
-                    else {
-                        populateBracket();
-                        setTimeout(function() {
-                            $('#question-dialog').addClass('show');
-                        }, 1000);
-                    }
+                    else populateBracket();
                 }
             } else showToast('An error has occurred.');
         }
     } else $('#code-input').css('border', '2px solid red');
+}
+
+function createBracket() {
+    return new Promise(resolve => {
+        let flowURL = 'https://prod-57.westus.logic.azure.com:443/workflows/096f2b8043a8450aab692962605201bd/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=hGCwqrjBDnd9CFI093YVqbukFWQM5yUfIF2cZBJ_7g0';
+        let req = new XMLHttpRequest();
+        req.open("POST", flowURL, true);
+        req.setRequestHeader("Content-Type", "application/json");
+        req.onreadystatechange = function () {
+            if (this.readyState === 4) {
+                req.onreadystatechange = null;
+                let result = JSON.parse(this.response);
+                resolve(result);
+            }
+        };
+        req.send();
+    });
 }
 
 function getBracket(code) {
@@ -70,10 +89,10 @@ function getBracket(code) {
 async function submitPlayerForm(playerType) {
     let playerName = $('#player-input').val();
 
-    if (playerName !== '') {        
+    if (playerName !== '') {
         player = {
             "Name": playerName.toString(),
-            "Code": code.toString(),
+            "Code": bracket.Code.toString(),
             "Type": playerType
         }
 
