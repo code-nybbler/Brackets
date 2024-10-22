@@ -61,6 +61,7 @@ body {
 #player-dialog #player-input,
 #question-dialog #answer-input { width: 90%; height: 200px; margin: auto; text-align: center; font-size: 7rem; display: block; }
 #code-dialog #code-input { height: 50px; }
+.input-error { border: 2px solid red; }
 #toast-msg {
     visibility: hidden;
     min-width: 250px;

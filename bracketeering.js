@@ -7,6 +7,7 @@ $(document).on('click', '#player-dialog .player-audience-btn', function() { subm
 $(document).on('click', '#welcome-dialog .welcome-confirm-btn', function() {
     $(this).closest('.menu').removeClass('show');
     setTimeout(function() {
+        $('#question-dialog p').text(bracket.Question1);
         $('#question-dialog').addClass('show');
     }, 1000);
 });
@@ -25,11 +26,47 @@ $(document).on('click', '#code-dialog .create-bracket-btn', async function() {
     }
 });
 
+$(document).on('click', '#question-dialog .answer-submit-btn', function() {
+    let answer = $(this).closest('.menu').find('input').text();
+    submitAnswerForm(answer);
+});
+
 async function getPrompts(filePath) {
     return fetch(filePath)
     .then(response => { return response.text(); })
     .then(data => { return data.split('\r\n'); })
     .catch(error => { console.error("Error reading file:", error); });
+}
+
+async function submitAnswerForm(answer) {
+    if (answer !== '') {
+        let result = await submitAnswer(answer);
+
+        if (result.error !== undefined) {
+            showToast(result.error.message);
+            $('#answer-input').addClass('input-error');
+        } else {
+            $(this).closest('.menu').removeClass('show');
+
+        }
+    } else $('#answer-input').addClass('input-error');
+}
+
+function submitAnswer(answer) {
+    return new Promise(resolve => {
+        let flowURL = 'https://prod-57.westus.logic.azure.com:443/workflows/c554fb64e21b43b886f3a4be7421d091/triggers/manual/paths/invoke?api-version=2016-06-01';
+        let req = new XMLHttpRequest();
+        req.open("POST", flowURL, true);
+        req.setRequestHeader("Content-Type", "application/json");
+        req.onreadystatechange = function () {
+            if (this.readyState === 4) {
+                req.onreadystatechange = null;
+                let result = JSON.parse(this.response);
+                resolve(result);
+            }
+        };
+        req.send(JSON.stringify({ "Code": bracket.Code.toString(), "Player": player.Name.toString(), "Round": 1, "Answer": answer.toString() }));
+    });
 }
 
 async function submitCodeForm() {
@@ -40,6 +77,7 @@ async function submitCodeForm() {
 
         if (result.error !== undefined) {
             showToast(result.error.message);
+            $('#code-input').addClass('input-error');
         } else {
             bracket = result;
             if (bracket !== undefined && bracket !== null) {
@@ -54,7 +92,7 @@ async function submitCodeForm() {
                 }
             } else showToast('An error has occurred.');
         }
-    } else $('#code-input').css('border', '2px solid red');
+    } else $('#code-input').addClass('input-error');
 }
 
 function createBracket() {
@@ -125,7 +163,7 @@ async function submitPlayerForm(playerType) {
 
             if (player.Type === 1) $('#welcome-dialog').addClass('show');
         }
-    } else $('#player-input').css('border', '2px solid red');
+    } else $('#player-input').addClass('input-error');
 }
 
 function addPlayer(player) {
