@@ -132,9 +132,9 @@ async function submitPlayerForm(playerType) {
 
         let result = await addPlayer(player);
 
-        if (result.error !== undefined) {                 
-            showToast(`${result.error.message}`);
+        if (result.error !== undefined) {
             $('#player-input').addClass('input-error');
+            showToast(result.error.message);
         } else {
             $('#player-dialog').removeClass('show');
 
