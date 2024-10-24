@@ -12,13 +12,14 @@ body {
     background-color: black;
     font-size: 42px;
     font-weight: 600;
-    color: #000000;
+    color: #333;
     width: 350px;
     padding: 15px;
     margin: auto;
     margin-top: 45px;
     rotate: -10deg;
     -webkit-text-stroke: 2px #fbebcc;
+    border-radius: 15px;
 }
 #prompt {
     text-align: center;
@@ -48,7 +49,7 @@ body {
     background: center / 100% no-repeat url("./Spinner.gif");
 }
 .menu {
-    background-color: #000;
+    background-color: #333;
     color: #fbebcc;
     padding: 40px;
     z-index: 99;
@@ -70,11 +71,11 @@ body {
 .btn-outline-success { color: #70cdc9; border-color: #70cdc9; }
 .btn-outline-success:hover,
 .btn-outline-success:focus,
-.btn-outline-success:active { color: #000000; background-color: #70cdc9; border-color: #70cdc9; box-shadow: 0 0 0 .2rem #70cdc9; }
+.btn-outline-success:active { color: #333; background-color: #70cdc9; border-color: #70cdc9; box-shadow: 0 0 0 .2rem #70cdc9; }
 .btn-outline-light { color: #fbebcc; border-color: #fbebcc; }
 .btn-outline-light:hover,
 .btn-outline-light:focus,
-.btn-outline-light:active { color: #000000; background-color: #fbebcc; border-color: #fbebcc; box-shadow: 0 0 0 .2rem #fbebcc; }
+.btn-outline-light:active { color: #333; background-color: #fbebcc; border-color: #fbebcc; box-shadow: 0 0 0 .2rem #fbebcc; }
 #code-dialog.show,
 #player-dialog.show,
 #welcome-dialog.show,
@@ -135,7 +136,7 @@ body {
 .player {
     width: 80%;
     padding: 15px;
-    background-color: #000;
+    background-color: #333;
     border-radius: 15px;
     display: block;
     font-weight: 600;
@@ -165,7 +166,7 @@ body {
 }
 .audience-member {
     padding: 15px;
-    background-color: #000;
+    background-color: #333;
     border-radius: 15px;
     display: inline-block;
     font-weight: 600;
@@ -178,10 +179,10 @@ body {
         transform: rotate(360deg)
     }
 }
-#bracket .topNrightLine { border-top: 2px solid #000; border-right: 2px solid #000; }
-#bracket .topNleftLine { border-top: 2px solid #000; border-left: 2px solid #000; }
-#bracket .bottomNrightLine { border-bottom: 2px solid #000; border-right: 2px solid #000; }
-#bracket .bottomNleftLine { border-bottom: 2px solid #000; border-left: 2px solid #000; }
-#bracket .rightLine { border-right: 2px solid #000; }
-#bracket .leftLine { border-left: 2px solid #000; }
-#bracket .bottomLine { border-bottom: 2px solid #000; }
+#bracket .topNrightLine { border-top: 2px solid #333; border-right: 2px solid #333; }
+#bracket .topNleftLine { border-top: 2px solid #333; border-left: 2px solid #333; }
+#bracket .bottomNrightLine { border-bottom: 2px solid #333; border-right: 2px solid #333; }
+#bracket .bottomNleftLine { border-bottom: 2px solid #333; border-left: 2px solid #333; }
+#bracket .rightLine { border-right: 2px solid #333; }
+#bracket .leftLine { border-left: 2px solid #333; }
+#bracket .bottomLine { border-bottom: 2px solid #333; }
