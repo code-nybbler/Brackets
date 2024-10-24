@@ -171,6 +171,7 @@ function addPlayer(player) {
 function populateBracket() {
     let players = bracket.Players, audience = bracket.Audience;
 
+    $('#bracket-code').text(bracket.Code);
     $('#prompt p').text(bracket.Question1);
     
     for (let p = 0; p < players.length; p++) {
