@@ -142,7 +142,7 @@ body {
     #player-dialog input { width: 90%; font-size: 40px; margin-top: 15px; border: 2px solid; border-radius: 15px; }
 }
 #bracket th,
-#bracket td { text-align: center; vertical-align: middle; height: 50px; border: none; position: relative; width: 5%; }
+#bracket td { text-align: center; vertical-align: middle; min-height: 50px; border: none; position: relative; width: 5%; }
 .player {
     width: 80%;
     padding: 15px;
@@ -164,15 +164,16 @@ body {
     font-size: 30px;
     -webkit-text-stroke: 2px #333;
     color: #fbebcc;
+    margin-bottom: 15px;
 }
 #audience {
     display: flex;
     align-items: center;
     justify-content: center;
     border: 2px solid #333;
-    max-width: 800px;
+    max-width: 90%;
     flex-wrap: wrap;
-    border-radius: 30px;
+    border-radius: 15px;
 }
 .audience-member {
     padding: 15px;
@@ -183,6 +184,7 @@ body {
     color: #fbebcc;
     margin: 5px;
     -webkit-text-stroke: 0;
+    font-size: 18px;
 }
 @keyframes spin {
     to {
