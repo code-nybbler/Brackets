@@ -133,25 +133,20 @@ async function submitPlayerForm(playerType) {
         let result = await addPlayer(player);
 
         if (result.error !== undefined) {                 
-            alert(result.error.message);
-        } else {            
+            showToast(`${result.error.message}`);
+            $('#player-input').addClass('input-error');
+        } else {
+            $('#player-dialog').removeClass('show');
+
             if (playerType === 1) {
-                if (bracket.Status === 122430000) {
-                    bracket.Players.push(player);
-                    showToast('You\'ve joined the bracket!');
-                } else {
-                    bracket.Audience.push(player);
-                    showToast('This bracket is already underway! We added you to the audience.');
-                    populateBracket();
-                }
+                bracket.Players.push(player);
+                showToast('You\'ve joined the bracket!');
+                $('#welcome-dialog').addClass('show');
             } else {
                 bracket.Audience.push(player);
                 showToast('You\'ve joined the audience!');
                 populateBracket();
             }
-            
-            $('#player-dialog').removeClass('show');
-            if (player.Type === 1) $('#welcome-dialog').addClass('show');
         }
     } else $('#player-input').addClass('input-error');
 }
