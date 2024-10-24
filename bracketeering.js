@@ -132,12 +132,8 @@ async function submitPlayerForm(playerType) {
 
         let result = await addPlayer(player);
 
-        if (result.error !== undefined) {
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {                    
-                    showToast(result.error.message);
-                });
-            });
+        if (result.error !== undefined) {                 
+            alert(result.error.message);
         } else {            
             if (playerType === 1) {
                 if (bracket.Status === 122430000) {
