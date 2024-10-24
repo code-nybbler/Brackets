@@ -131,33 +131,33 @@ async function submitPlayerForm(playerType) {
         }
 
         let result = await addPlayer(player);
-        welcomePlayer(result);
-                
-    } else $('#player-input').addClass('input-error');
-}
 
-function welcomePlayer(result) {
-    if (result.error !== undefined) {
-        showToast(result.error.message);
-    } else {            
-        if (playerType === 1) {
-            if (bracket.Status === 122430000) {
-                bracket.Players.push(player);
-                showToast('You\'ve joined the bracket!');
+        if (result.error !== undefined) {
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {                    
+                    showToast(result.error.message);
+                });
+            });
+        } else {            
+            if (playerType === 1) {
+                if (bracket.Status === 122430000) {
+                    bracket.Players.push(player);
+                    showToast('You\'ve joined the bracket!');
+                } else {
+                    bracket.Audience.push(player);
+                    showToast('This bracket is already underway! We added you to the audience.');
+                    populateBracket();
+                }
             } else {
                 bracket.Audience.push(player);
-                showToast('This bracket is already underway! We added you to the audience.');
+                showToast('You\'ve joined the audience!');
                 populateBracket();
             }
-        } else {
-            bracket.Audience.push(player);
-            showToast('You\'ve joined the audience!');
-            populateBracket();
+            
+            $('#player-dialog').removeClass('show');
+            if (player.Type === 1) $('#welcome-dialog').addClass('show');
         }
-        
-        $('#player-dialog').removeClass('show');
-        if (player.Type === 1) $('#welcome-dialog').addClass('show');
-    }
+    } else $('#player-input').addClass('input-error');
 }
 
 function addPlayer(player) {
