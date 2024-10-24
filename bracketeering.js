@@ -1,6 +1,6 @@
 let bracket, player;
 
-$(document).ready(function() { $('#code-dialog').addClass('show'); getIP(); });
+$(document).ready(function() { $('#code-dialog').addClass('show'); });
 $(document).on('click', '#code-dialog .code-input-btn', function() { submitCodeForm(); });
 $(document).on('click', '#player-dialog .player-bracket-btn', function() { submitPlayerForm(1); });
 $(document).on('click', '#player-dialog .player-audience-btn', function() { submitPlayerForm(2); });
@@ -30,17 +30,6 @@ $(document).on('click', '#question-dialog .answer-submit-btn', function() {
     let answer = $(this).closest('.menu').find('textarea').val();
     submitAnswerForm(answer);
 });
-
-function getIP() {
-    fetch('https://api.ipify.org?format=json')
-    .then(response => response.json())
-    .then(data => {
-        console.log('Your Public IP Address: ', data.ip);
-    })
-    .catch(error => {
-        console.error('Error fetching IP: ', error);
-    });
-}
 
 async function submitAnswerForm(answer) {
     if (answer !== '') {
@@ -142,29 +131,33 @@ async function submitPlayerForm(playerType) {
         }
 
         let result = await addPlayer(player);
+        welcomePlayer(result);
+                
+    } else $('#player-input').addClass('input-error');
+}
 
-        if (result.error !== undefined) {
-            showToast(result.error.message);
-        } else {            
-            if (playerType === 1) {
-                if (bracket.Status === 122430000) {
-                    bracket.Players.push(player);
-                    showToast('You\'ve joined the bracket!');
-                } else {
-                    bracket.Audience.push(player);
-                    showToast('This bracket is already underway! We added you to the audience.');
-                    populateBracket();
-                }
+function welcomePlayer(result) {
+    if (result.error !== undefined) {
+        showToast(result.error.message);
+    } else {            
+        if (playerType === 1) {
+            if (bracket.Status === 122430000) {
+                bracket.Players.push(player);
+                showToast('You\'ve joined the bracket!');
             } else {
                 bracket.Audience.push(player);
-                showToast('You\'ve joined the audience!');
+                showToast('This bracket is already underway! We added you to the audience.');
                 populateBracket();
             }
-            
-            $('#player-dialog').removeClass('show');
-            if (player.Type === 1) $('#welcome-dialog').addClass('show');
+        } else {
+            bracket.Audience.push(player);
+            showToast('You\'ve joined the audience!');
+            populateBracket();
         }
-    } else $('#player-input').addClass('input-error');
+        
+        $('#player-dialog').removeClass('show');
+        if (player.Type === 1) $('#welcome-dialog').addClass('show');
+    }
 }
 
 function addPlayer(player) {
