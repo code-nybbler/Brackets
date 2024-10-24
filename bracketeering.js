@@ -1,6 +1,6 @@
 let bracket, player;
 
-$(document).ready(function() { $('#code-dialog').addClass('show'); });
+$(document).ready(function() { $('#code-dialog').addClass('show'); getIP(); });
 $(document).on('click', '#code-dialog .code-input-btn', function() { submitCodeForm(); });
 $(document).on('click', '#player-dialog .player-bracket-btn', function() { submitPlayerForm(1); });
 $(document).on('click', '#player-dialog .player-audience-btn', function() { submitPlayerForm(2); });
@@ -31,11 +31,15 @@ $(document).on('click', '#question-dialog .answer-submit-btn', function() {
     submitAnswerForm(answer);
 });
 
-async function getPrompts(filePath) {
-    return fetch(filePath)
-    .then(response => { return response.text(); })
-    .then(data => { return data.split('\r\n'); })
-    .catch(error => { console.error("Error reading file:", error); });
+function getIP() {
+    fetch('https://api.ipify.org?format=json')
+    .then(response => response.json())
+    .then(data => {
+        console.log('Your Public IP Address: ', data.ip);
+    })
+    .catch(error => {
+        console.error('Error fetching IP: ', error);
+    });
 }
 
 async function submitAnswerForm(answer) {

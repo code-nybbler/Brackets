@@ -68,13 +68,18 @@ body {
 .menu button { width: 90%; height: 100px; margin: auto; margin-top: 15px; font-size: 3rem; border: 2px solid; }
 .strike-menu { width: 110%; rotate: -5deg; }
 .btn-outline-success { color: #70cdc9; border-color: #70cdc9; }
-.btn-outline-success:hover, .btn-outline-success:focus { color: #000000; background-color: #70cdc9; border-color: #70cdc9; box-shadow: 0 0 0 .2rem #70cdc9; }
+.btn-outline-success:hover,
+.btn-outline-success:focus,
+.btn-outline-success:active { color: #000000; background-color: #70cdc9; border-color: #70cdc9; box-shadow: 0 0 0 .2rem #70cdc9; }
 .btn-outline-light { color: #fbebcc; border-color: #fbebcc; }
-.btn-outline-light:hover, .btn-outline-light:focus { color: #000000; background-color: #fbebcc; border-color: #fbebcc; box-shadow: 0 0 0 .2rem #fbebcc; }
+.btn-outline-light:hover,
+.btn-outline-light:focus,
+.btn-outline-light:active { color: #000000; background-color: #fbebcc; border-color: #fbebcc; box-shadow: 0 0 0 .2rem #fbebcc; }
 #code-dialog.show,
 #player-dialog.show,
 #welcome-dialog.show,
-#question-dialog.show { visibility: visible; opacity: 1; }
+#question-dialog.show,
+#voting-dialog.show { visibility: visible; opacity: 1; }
 #player-dialog #player-input { width: 90%; height: 200px; margin: auto; text-align: center; font-size: 7rem; display: block; }
 #question-dialog #answer-input { width: 90%; margin: auto; text-align: center; font-size: 3rem; display: block; }
 #code-dialog #code-input { height: 50px; }
