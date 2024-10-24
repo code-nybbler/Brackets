@@ -9,7 +9,7 @@ body {
 }
 #game-container { display: none; }
 #title {
-    background-color: black;
+    background-color: #333;
     font-size: 42px;
     font-weight: 600;
     color: #333;
@@ -23,11 +23,13 @@ body {
 }
 #bracket-code {
     position: absolute;
-    top: 10px;
+    top: 30px;
     right: 0;
-    width: 250px;
+    width: 170px;
     background-color: #df5244;
     color: #fbebcc;
+    font-size: 40px;
+    text-align: center;
 }
 #prompt {
     text-align: center;
@@ -36,7 +38,7 @@ body {
     margin-top: 50px;
     font-weight: 600;
     font-size: 40px;
-    -webkit-text-stroke: 2px black;
+    -webkit-text-stroke: 2px #333;
     color: #fbebcc;
 }
 .game-container {
@@ -160,14 +162,14 @@ body {
     text-align: center;
     font-weight: 600;
     font-size: 30px;
-    -webkit-text-stroke: 2px black;
+    -webkit-text-stroke: 2px #333;
     color: #fbebcc;
 }
 #audience {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid black;
+    border: 2px solid #333;
     max-width: 800px;
     flex-wrap: wrap;
     border-radius: 30px;
