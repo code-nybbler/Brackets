@@ -13,7 +13,10 @@ $(document).on('click', '#welcome-dialog .welcome-confirm-btn', function() {
 });
 
 $(document).on('click', '#code-dialog .create-bracket-btn', async function() {
+    disableInput();
     let result = await createBracket();
+    enableInput();
+
     if (result.error !== undefined) {
         showToast(result.error.message);
     } else {
@@ -33,7 +36,9 @@ $(document).on('click', '#prompt-dialog .answer-submit-btn', function() {
 
 async function submitAnswerForm(answer) {
     if (answer !== '') {
+        disableInput();
         let result = await submitAnswer(answer);
+        enableInput();
 
         if (result.error !== undefined) {
             showToast(result.error.message);
@@ -63,12 +68,26 @@ function submitAnswer(answer) {
     });
 }
 
+function disableInput() {
+    $('input').attr('disabled', true);
+    $('textarea').attr('disabled', true);
+    $('button').attr('disabled', true);
+}
+
+function enableInput() {
+    $('input').removeAttr('disabled');
+    $('textarea').removeAttr('disabled');
+    $('button').removeAttr('disabled');
+}
+
 async function submitCodeForm() {
     let code = $('#code-input').val();
     $('#code-input').removeClass('input-error');
 
     if (code !== '') {
+        disableInput();
         let result = await getBracket(code);
+        enableInput();
 
         if (result.error !== undefined) {
             showToast(result.error.message);
@@ -132,7 +151,10 @@ async function submitPlayerForm(playerType) {
             "Type": playerType
         }
 
+        
+        disableInput();
         let result = await addPlayer(player);
+        enableInput();
 
         if (result.error !== undefined) {
             showToast(result.error.message);
