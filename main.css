@@ -92,10 +92,10 @@ body {
 #code-dialog.show,
 #player-dialog.show,
 #welcome-dialog.show,
-#question-dialog.show,
+#prompt-dialog.show,
 #voting-dialog.show { visibility: visible; opacity: 1; }
 #player-dialog #player-input { width: 90%; height: 200px; margin: auto; text-align: center; font-size: 7rem; display: block; }
-#question-dialog #answer-input { width: 90%; margin: auto; text-align: center; font-size: 3rem; display: block; }
+#prompt-dialog #answer-input { width: 90%; margin: auto; text-align: center; font-size: 3rem; display: block; }
 #code-dialog #code-input { height: 50px; }
 .input-error { border: 2px solid red; }
 #toast-msg {
@@ -135,6 +135,7 @@ body {
     to {bottom: 0; opacity: 0;}
 }
 @media all and (max-width: 1024px) {
+    body { background-size: contain; }
     h2 { font-size: 5rem; }
     h3 { font-size: 3.75rem; }
     h4 { font-size: 3rem; }

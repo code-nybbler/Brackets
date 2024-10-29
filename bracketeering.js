@@ -7,8 +7,8 @@ $(document).on('click', '#player-dialog .player-audience-btn', function() { subm
 $(document).on('click', '#welcome-dialog .welcome-confirm-btn', function() {
     $(this).closest('.menu').removeClass('show');
     setTimeout(function() {
-        $('#question-dialog p').text(bracket.Question1);
-        $('#question-dialog').addClass('show');
+        $('#prompt-dialog p').text(bracket.Prompt1);
+        $('#prompt-dialog').addClass('show');
     }, 1000);
 });
 
@@ -26,7 +26,7 @@ $(document).on('click', '#code-dialog .create-bracket-btn', async function() {
     }
 });
 
-$(document).on('click', '#question-dialog .answer-submit-btn', function() {
+$(document).on('click', '#prompt-dialog .answer-submit-btn', function() {
     let answer = $(this).closest('.menu').find('textarea').val();
     submitAnswerForm(answer);
 });
@@ -39,8 +39,8 @@ async function submitAnswerForm(answer) {
             showToast(result.error.message);
             $('#answer-input').addClass('input-error');
         } else {
-            player.Answer1 = answer;
-            $('#question-dialog').closest('.menu').removeClass('show');
+            player.Answer = answer;
+            $('#prompt-dialog').closest('.menu').removeClass('show');
             populateBracket();
         }
     } else $('#answer-input').addClass('input-error');
@@ -173,16 +173,16 @@ function addPlayer(player) {
 function populateBracket() {
     let players = bracket.Players, audience = bracket.Audience;
 
-    $('#bracket-code').html(`<span style="font-size: 16px;">Bracket Code</span><br>`+bracket.Code);
-    $('#prompt p').text(bracket.Question1);
+    $('#bracket-code').html(`<span style="font-size: 16px;">Bracket Code</span><br>`+bracket.Code.toUpperCase());
+    $('#prompt p').text(bracket.Prompt1);
     
     for (let p = 0; p < players.length; p++) {
         let playerBlurb = '';
         switch(bracket.Status) {
             case 122430000: playerBlurb = players[p].Name; break;
-            case 122430001: playerBlurb = players[p].Answer1 !== null ? players[p].Answer1 : '?'; break;
-            case 122430002: playerBlurb = players[p].Answer2 !== null ? players[p].Answer2 : '?'; break;
-            case 122430003: playerBlurb = players[p].Answer3 !== null ? players[p].Answer3 : '?'; break;
+            case 122430001:
+            case 122430002:
+            case 122430003: playerBlurb = players[p].Answer !== null ? players[p].Answer : '?'; break;
             default: break;
         }
         $(`#p${p+1}`).append(`<span class="player">${playerBlurb}</span>`);
