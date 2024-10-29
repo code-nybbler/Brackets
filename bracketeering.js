@@ -65,6 +65,7 @@ function submitAnswer(answer) {
 
 async function submitCodeForm() {
     let code = $('#code-input').val();
+    $('#code-input').removeClass('input-error');
 
     if (code !== '') {
         let result = await getBracket(code);
@@ -122,6 +123,7 @@ function getBracket(code) {
 
 async function submitPlayerForm(playerType) {
     let playerName = $('#player-input').val();
+    $('#player-input').removeClass('input-error');
 
     if (playerName !== '') {
         player = {
@@ -171,7 +173,7 @@ function addPlayer(player) {
 function populateBracket() {
     let players = bracket.Players, audience = bracket.Audience;
 
-    $('#bracket-code').text(bracket.Code);
+    $('#bracket-code').html(`<span style="font-size: 16px;">Bracket Code</span><br>`+bracket.Code);
     $('#prompt p').text(bracket.Question1);
     
     for (let p = 0; p < players.length; p++) {

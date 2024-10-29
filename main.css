@@ -37,10 +37,13 @@ body {
     margin: auto;
     margin-top: 50px;
     font-weight: 600;
-    font-size: 40px;
-    -webkit-text-stroke: 2px #333;
+    font-size: 32px;
     color: #fbebcc;
+    padding: 15px;
+    background: rgba(51, 51, 51, .9);
+    border-radius: 50px;
 }
+#prompt p { font-size: 40px; }
 .game-container {
     width: 100%;
     margin: 0 auto;
