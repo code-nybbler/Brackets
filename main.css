@@ -84,10 +84,12 @@ body {
 .btn-outline-success { color: #70cdc9; border-color: #70cdc9; }
 .btn-outline-success:hover,
 .btn-outline-success:focus,
+.btn-outline-success:disabled,
 .btn-outline-success:not(:disabled):not(.disabled):active { color: #333; background-color: #70cdc9; border-color: #70cdc9; box-shadow: 0 0 0 .2rem #70cdc9; }
 .btn-outline-light { color: #fbebcc; border-color: #fbebcc; }
 .btn-outline-light:hover,
 .btn-outline-light:focus,
+.btn-outline-light:disabled,
 .btn-outline-light:not(:disabled):not(.disabled):active { color: #333; background-color: #fbebcc; border-color: #fbebcc; box-shadow: 0 0 0 .2rem #fbebcc; }
 #code-dialog.show,
 #player-dialog.show,
