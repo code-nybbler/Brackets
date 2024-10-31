@@ -93,6 +93,7 @@ body {
 .btn-outline-light:not(:disabled):not(.disabled):active { color: #333; background-color: #fbebcc; border-color: #fbebcc; box-shadow: 0 0 0 .2rem #fbebcc; }
 #code-dialog.show,
 #player-dialog.show,
+#player-code-dialog.show,
 #welcome-dialog.show,
 #prompt-dialog.show,
 #voting-dialog.show { visibility: visible; opacity: 1; }
