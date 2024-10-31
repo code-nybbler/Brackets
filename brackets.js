@@ -6,7 +6,7 @@ $(document).on('click', '#player-dialog .player-bracket-btn', function() { submi
 $(document).on('click', '#player-dialog .player-audience-btn', function() { submitPlayerForm(2); });
 $(document).on('click', '#player-code-dialog .player-code-btn', function() {
     $('#player-code-dialog').removeClass('show');
-    if (playerType === 1) {
+    if (player.Type === 1) {
         bracket.Players.push(player);
         showToast('You\'ve joined the bracket!');
         $('#welcome-dialog').addClass('show');
