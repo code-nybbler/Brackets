@@ -18,9 +18,7 @@ $(document).on('click', '#player-code-dialog .player-code-btn', function() {
 });
 $(document).on('click', '.copy', function() {
     let copyText = $(this).siblings('p').first().text();
-    copyText.select();
-    copyText.setSelectionRange(0, 99999); // for mobile devices
-    navigator.clipboard.writeText(copyText.value);
+    navigator.clipboard.writeText(copyText);
 });
 $(document).on('onmouseout', '.copy', function() {
     $(this).find('.tooltip').text('Copy to clipboard');
