@@ -101,6 +101,45 @@ body {
 #prompt-dialog #answer-input { width: 90%; margin: auto; text-align: center; font-size: 3rem; display: block; }
 #code-dialog #code-input { height: 50px; }
 .input-error { border: 2px solid red; }
+.copy {
+    font-size: 22px;
+    margin-left: 5px;
+    position: relative;
+    top: -.25em;
+    cursor: pointer;
+    filter: brightness(0.4);
+    display: inline-block;
+}
+.copy .tooltip {
+    visibility: hidden;
+    width: 140px;
+    background-color: #333;
+    color: #fbebcc;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -75px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.copy .tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+.copy:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
 #toast-msg {
     visibility: hidden;
     min-width: 250px;

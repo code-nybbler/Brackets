@@ -16,7 +16,15 @@ $(document).on('click', '#player-code-dialog .player-code-btn', function() {
         populateBracket();
     }
 });
-
+$(document).on('click', '.copy', function() {
+    let copyText = $(this).siblings('p').first().text();
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); // for mobile devices
+    navigator.clipboard.writeText(copyText.value);
+});
+$(document).on('onmouseout', '.copy', function() {
+    $(this).find('.tooltip').text('Copy to clipboard');
+});
 $(document).on('click', '#welcome-dialog .welcome-confirm-btn', function() {
     $(this).closest('.menu').removeClass('show');
     setTimeout(function() {
