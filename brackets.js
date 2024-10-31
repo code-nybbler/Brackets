@@ -4,6 +4,7 @@ $(document).ready(function() { $('#code-dialog').addClass('show'); });
 $(document).on('click', '#code-dialog .code-input-btn', function() { submitCodeForm(); });
 $(document).on('click', '#player-dialog .player-bracket-btn', function() { submitPlayerForm(1); });
 $(document).on('click', '#player-dialog .player-audience-btn', function() { submitPlayerForm(2); });
+$(document).on('click', '#player-dialog .player-code-btn', function() { $('#player-dialog').removeClass('show'); })
 $(document).on('click', '#welcome-dialog .welcome-confirm-btn', function() {
     $(this).closest('.menu').removeClass('show');
     setTimeout(function() {
@@ -159,7 +160,10 @@ async function submitPlayerForm(playerType) {
             showToast(result.error.message);
             $('#player-input').addClass('input-error');
         } else {
-            $('#player-dialog').removeClass('show');
+            player.Code = result.Code;
+            $('#player-dialog').html(`<h1>Player Code:</h1><hr><p>${player.Code}</p>
+            <button type="button" class="btn btn-outline-success player-code-btn">Got it!</button>`);
+            //$('#player-dialog').removeClass('show');
 
             if (playerType === 1) {
                 bracket.Players.push(player);
