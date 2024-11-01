@@ -99,15 +99,17 @@ body {
 #code-dialog.show,
 #player-dialog.show,
 #player-code-dialog.show,
-#player-code.show,
+#code-copy-container.show,
+#player-code-container.show,
 #welcome-dialog.show,
 #prompt-dialog.show,
 #voting-dialog.show { visibility: visible; opacity: 1; }
 #player-dialog #player-input,
-#player-dialog #player-code { width: 90%; height: 200px; margin: auto; text-align: center; font-size: 7rem; display: block; }
+#player-code-dialog #player-code { width: 90%; height: 200px; margin: auto; text-align: center; font-size: 7rem; display: block; }
 #prompt-dialog #answer-input { width: 90%; margin: auto; text-align: center; font-size: 3rem; display: block; }
 #code-dialog #code-input { height: 50px; }
-#player-code { 
+#player-code-dialog #player-code-container,
+#player-code-dialog #code-copy-container { 
     visibility: hidden;
     opacity: 0;
     transition: visibility 0.3s linear, opacity 0.3s linear;

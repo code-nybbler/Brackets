@@ -4,7 +4,11 @@ $(document).ready(function() { $('#code-dialog').addClass('show'); });
 $(document).on('click', '#code-dialog .code-input-btn', function() { submitCodeForm(); });
 $(document).on('click', '#player-dialog .player-bracket-btn', function() { submitPlayerForm(1); });
 $(document).on('click', '#player-dialog .player-audience-btn', function() { submitPlayerForm(2); });
-$(document).on('click', '#player-dialog .player-rejoin-btn', function() { $(this).hide(); $('#player-code').addClass('show'); });
+$(document).on('click', '#player-dialog .player-rejoin-btn', function() { $('#player-dialog').removeClass('show'); $('#player-code-dialog').addClass('show'); $('#player-code-container').addClass('show'); });
+$(document).on('click', '#player-dialog .player-code-cancel-btn', function() { $('#player-code-dialog').removeClass('show'); $('#player-code-container').removeClass('show'); $('#player-dialog').addClass('show'); });
+$(document).on('click', '#player-dialog .player-code-submit-btn', function() {
+    
+});
 $(document).on('onmouseout', '.copy', function() { $(this).find('.tooltip').text('Copy to clipboard'); });
 $(document).on('click', '#player-code-dialog .player-code-btn', function() {
     $('#player-code-dialog').removeClass('show');
@@ -184,6 +188,7 @@ async function submitPlayerForm(playerType) {
             $('#player-dialog').removeClass('show');
             $('#player-code-dialog p').text(player.Code);
             $('#player-code-dialog').addClass('show');
+            $('#code-copy-container').addClass('show');
         }
     } else $('#player-input').addClass('input-error');
 }
