@@ -85,7 +85,7 @@ body {
 .menu p { font-size: 1.5rem; }
 .menu input,
 .menu textarea { background-color: #fbebcc; }
-.menu button { width: 90%; height: 100px; margin: auto; margin-top: 15px; font-size: 3rem; border: 2px solid; }
+.menu button { width: 85%; height: 100px; margin: auto; margin-top: 15px; font-size: 3rem; border: 2px solid; }
 .strike-menu { width: 110%; rotate: -5deg; }
 .btn-outline-success { color: #70cdc9; border-color: #70cdc9; }
 .btn-outline-success:hover,
@@ -111,7 +111,7 @@ body {
 #prompt-dialog.show,
 #voting-dialog.show { visibility: visible; opacity: 1; }
 #player-dialog #player-input,
-#player-code-dialog #player-code { width: 90%; height: 200px; margin: auto; text-align: center; font-size: 7rem; display: block; }
+#player-code-dialog #player-code { width: 85%; height: 200px; margin: auto; text-align: center; font-size: 7rem; display: block; }
 #prompt-dialog #answer-input { width: 90%; margin: auto; text-align: center; font-size: 3rem; display: block; }
 #code-dialog #code-input { height: 50px; }
 .input-error { border: 2px solid red; }

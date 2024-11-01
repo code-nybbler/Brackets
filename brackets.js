@@ -6,9 +6,7 @@ $(document).on('click', '#player-dialog .player-bracket-btn', function() { submi
 $(document).on('click', '#player-dialog .player-audience-btn', function() { submitPlayerForm(2); });
 $(document).on('click', '#player-dialog .player-rejoin-btn', function() { $('#player-dialog').removeClass('show'); $('#player-code-dialog').addClass('show'); $('#player-code-container').addClass('show'); });
 $(document).on('click', '#player-dialog .player-code-cancel-btn', function() { $('#player-code-dialog').removeClass('show'); $('#player-code-container').removeClass('show'); $('#player-dialog').addClass('show'); });
-$(document).on('click', '#player-dialog .player-code-submit-btn', function() {
-    
-});
+$(document).on('click', '#player-dialog .player-code-submit-btn', function() { submitPlayerCodeForm(); });
 $(document).on('onmouseout', '.copy', function() { $(this).find('.tooltip').text('Copy to clipboard'); });
 $(document).on('click', '#player-code-dialog .player-code-btn', function() {
     $('#player-code-dialog').removeClass('show');
@@ -103,6 +101,28 @@ function enableInput() {
     $('button').removeAttr('disabled');
 }
 
+async function submitPlayerCodeForm() {
+    let code = $('#player-code').val();
+    $('#player-code').removeClass('input-error');
+
+    if (code !== '') {
+        disableInput();
+        let result = await getPlayer(code);
+        enableInput();
+
+        if (result.error !== undefined) {
+            showToast(result.error.message);
+            $('#player-code').addClass('input-error');
+        } else {
+            player = result;
+            if (player !== undefined && player !== null) {
+                $('#player-code-dialog').removeClass('show');
+
+            } else showToast('An error has occurred.');
+        }
+    } else $('#player-code').addClass('input-error');
+}
+
 async function submitCodeForm() {
     let code = $('#code-input').val();
     $('#code-input').removeClass('input-error');
@@ -143,6 +163,23 @@ function createBracket() {
             }
         };
         req.send();
+    });
+}
+
+function getPlayer(code) {
+    return new Promise(resolve => {
+        let flowURL = 'https://prod-45.westus.logic.azure.com:443/workflows/f1378ac334d0497b8c812d7091a9ae83/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=TQX1GQXWk7DY-QMwjBhEuykHSRDpLI9C1cuT1w2vKT4';
+        let req = new XMLHttpRequest();
+        req.open("POST", flowURL, true);
+        req.setRequestHeader("Content-Type", "application/json");
+        req.onreadystatechange = function () {
+            if (this.readyState === 4) {
+                req.onreadystatechange = null;
+                let result = JSON.parse(this.response);
+                resolve(result);
+            }
+        };
+        req.send(JSON.stringify({ "BracketCode": bracket.Code, "PlayerCode": code }));
     });
 }
 
