@@ -91,15 +91,26 @@ body {
 .btn-outline-light:focus,
 .btn-outline-light:disabled,
 .btn-outline-light:not(:disabled):not(.disabled):active { color: #333; background-color: #fbebcc; border-color: #fbebcc; box-shadow: 0 0 0 .2rem #fbebcc; }
+.btn-outline-dark { color: #f27d59; border-color: #f27d59; }
+.btn-outline-dark:hover,
+.btn-outline-dark:focus,
+.btn-outline-dark:disabled,
+.btn-outline-dark:not(:disabled):not(.disabled):active { color: #333; background-color: #f27d59; border-color: #f27d59; box-shadow: 0 0 0 .2rem #f27d59; }
 #code-dialog.show,
 #player-dialog.show,
 #player-code-dialog.show,
+#player-code.show,
 #welcome-dialog.show,
 #prompt-dialog.show,
 #voting-dialog.show { visibility: visible; opacity: 1; }
 #player-dialog #player-input { width: 90%; height: 200px; margin: auto; text-align: center; font-size: 7rem; display: block; }
 #prompt-dialog #answer-input { width: 90%; margin: auto; text-align: center; font-size: 3rem; display: block; }
 #code-dialog #code-input { height: 50px; }
+#player-code { 
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s linear, opacity 0.3s linear;
+}
 .input-error { border: 2px solid red; }
 .copy {
     font-size: 22px;
