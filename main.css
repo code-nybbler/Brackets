@@ -103,7 +103,8 @@ body {
 #welcome-dialog.show,
 #prompt-dialog.show,
 #voting-dialog.show { visibility: visible; opacity: 1; }
-#player-dialog #player-input { width: 90%; height: 200px; margin: auto; text-align: center; font-size: 7rem; display: block; }
+#player-dialog #player-input,
+#player-dialog #player-code { width: 90%; height: 200px; margin: auto; text-align: center; font-size: 7rem; display: block; }
 #prompt-dialog #answer-input { width: 90%; margin: auto; text-align: center; font-size: 3rem; display: block; }
 #code-dialog #code-input { height: 50px; }
 #player-code { 
