@@ -117,7 +117,8 @@ async function submitPlayerCodeForm() {
             player = result;
             if (player !== undefined && player !== null) {
                 $('#player-code-dialog').removeClass('show');
-
+                showToast('Welcome back to the bracket!');
+                populateBracket();
             } else showToast('An error has occurred.');
         }
     } else $('#player-code').addClass('input-error');
