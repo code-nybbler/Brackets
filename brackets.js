@@ -117,7 +117,7 @@ async function submitPlayerCodeForm() {
             player = result;
             if (player !== undefined && player !== null) {
                 $('#player-code-dialog').removeClass('show');
-                showToast('Welcome back to the bracket!');
+                showToast(`Welcome back ${player.Name}!`);
                 populateBracket();
             } else showToast('An error has occurred.');
         }
@@ -257,10 +257,15 @@ function populateBracket() {
     for (let p = 0; p < players.length; p++) {
         let playerBlurb = '';
         switch(bracket.Status) {
-            case 122430000: playerBlurb = players[p].Name; break;
+            case 122430000: // new game
+                playerBlurb = players[p].Name;
+                break;
             case 122430001:
             case 122430002:
-            case 122430003: playerBlurb = players[p].Answer !== null ? players[p].Answer : '?'; break;
+            case 122430003: // in progress
+                $('#prompt span').text(`Round ${bracket.Status.toString().slice(-1)}:`);
+                playerBlurb = players[p].Answer !== null ? players[p].Answer : '?';
+                break;
             default: break;
         }
         $(`#p${p+1}`).append(`<span class="player">${playerBlurb}</span>`);
