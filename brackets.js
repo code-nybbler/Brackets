@@ -5,8 +5,8 @@ $(document).on('click', '#code-dialog .code-input-btn', function() { submitCodeF
 $(document).on('click', '#player-dialog .player-bracket-btn', function() { submitPlayerForm(1); });
 $(document).on('click', '#player-dialog .player-audience-btn', function() { submitPlayerForm(2); });
 $(document).on('click', '#player-dialog .player-rejoin-btn', function() { $('#player-dialog').removeClass('show'); $('#player-code-dialog').addClass('show'); $('#player-code-container').addClass('show'); });
-$(document).on('click', '#player-dialog .player-code-cancel-btn', function() { $('#player-code-dialog').removeClass('show'); $('#player-code-container').removeClass('show'); $('#player-dialog').addClass('show'); });
-$(document).on('click', '#player-dialog .player-code-submit-btn', function() { submitPlayerCodeForm(); });
+$(document).on('click', '#player-code-dialog .player-code-cancel-btn', function() { $('#player-code-dialog').removeClass('show'); $('#player-code-container').removeClass('show'); $('#player-dialog').addClass('show'); });
+$(document).on('click', '#player-code-dialog .player-code-submit-btn', function() { submitPlayerCodeForm(); });
 $(document).on('onmouseout', '.copy', function() { $(this).find('.tooltip').text('Copy to clipboard'); });
 $(document).on('click', '#player-code-dialog .player-code-btn', function() {
     $('#player-code-dialog').removeClass('show');
