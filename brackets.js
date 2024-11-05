@@ -4,8 +4,8 @@ $(document).ready(function() { $('#code-dialog').addClass('show'); });
 $(document).on('click', '#code-dialog .code-input-btn', function() { submitCodeForm(); });
 $(document).on('click', '#player-dialog .player-bracket-btn', function() { submitPlayerForm(1); });
 $(document).on('click', '#player-dialog .player-audience-btn', function() { submitPlayerForm(2); });
-$(document).on('click', '#player-dialog .player-rejoin-btn', function() { $('#player-dialog').removeClass('show'); $('#player-code-dialog').addClass('show'); $('#player-code-container').addClass('show'); });
-$(document).on('click', '#player-code-dialog .player-code-cancel-btn', function() { $('#player-code-dialog').removeClass('show'); $('#player-code-container').removeClass('show'); $('#player-dialog').addClass('show'); });
+$(document).on('click', '#player-dialog .player-rejoin-btn', function() { $('#player-dialog').removeClass('show'); $('#player-code-dialog').addClass('show'); $('#player-code-container').show(); });
+$(document).on('click', '#player-code-dialog .player-code-cancel-btn', function() { $('#player-code-dialog').removeClass('show'); $('#player-code-container').hide(); $('#player-dialog').addClass('show'); });
 $(document).on('click', '#player-code-dialog .player-code-submit-btn', function() { submitPlayerCodeForm(); });
 $(document).on('onmouseout', '.copy', function() { $(this).find('.tooltip').text('Copy to clipboard'); });
 $(document).on('click', '#player-code-dialog .player-code-btn', function() {
@@ -226,7 +226,7 @@ async function submitPlayerForm(playerType) {
             $('#player-dialog').removeClass('show');
             $('#player-code-dialog p').text(player.Code);
             $('#player-code-dialog').addClass('show');
-            $('#code-copy-container').addClass('show');
+            $('#code-copy-container').show();
         }
     } else $('#player-input').addClass('input-error');
 }
@@ -263,7 +263,6 @@ function populateBracket() {
             case 122430001:
             case 122430002:
             case 122430003: // in progress
-                $('#prompt span').text(`Round ${bracket.Status.toString().slice(-1)}:`);
                 playerBlurb = players[p].Answer !== null ? players[p].Answer : '?';
                 break;
             default: break;
@@ -277,6 +276,12 @@ function populateBracket() {
     }
 
     $('#game-container').show();
+
+    if (bracket.Status !== 122430000) {
+        $('#prompt span').text(`Round ${bracket.Status.toString().slice(-1)}:`);
+
+        $('#voting-dialog').addClass('show');
+    }
 }
 
 function showToast(text) {

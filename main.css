@@ -76,12 +76,8 @@ body {
     text-align: center;
     border-radius: 55px;
 }
-#player-code-container,
-#code-copy-container { 
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 0.3s linear, opacity 0.3s linear;
-}
+#player-code-container ,
+#code-copy-container { display: none; }
 .menu p { font-size: 1.5rem; }
 .menu input,
 .menu textarea { background-color: #fbebcc; }
