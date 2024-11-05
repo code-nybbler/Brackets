@@ -32,7 +32,6 @@ $(document).on('click', '#welcome-dialog .welcome-confirm-btn', function() {
         $('#prompt-dialog').addClass('show');
     }, 1000);
 });
-
 $(document).on('click', '#code-dialog .create-bracket-btn', async function() {
     disableInput();
     let result = await createBracket();
@@ -49,7 +48,6 @@ $(document).on('click', '#code-dialog .create-bracket-btn', async function() {
         }
     }
 });
-
 $(document).on('click', '#prompt-dialog .answer-submit-btn', function() {
     let answer = $(this).closest('.menu').find('textarea').val();
     submitAnswerForm(answer);
@@ -118,7 +116,12 @@ async function submitPlayerCodeForm() {
             if (player !== undefined && player !== null) {
                 $('#player-code-dialog').removeClass('show');
                 showToast(`Welcome back ${player.Name}!`);
-                populateBracket();
+                if (player.Type === 1) {
+                    setTimeout(function() {
+                        $('#prompt-dialog p').text(bracket.Prompt1);
+                        $('#prompt-dialog').addClass('show');
+                    }, 1000);
+                } else populateBracket();
             } else showToast('An error has occurred.');
         }
     } else $('#player-code').addClass('input-error');
