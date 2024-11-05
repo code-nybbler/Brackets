@@ -8,6 +8,10 @@ $(document).on('click', '#player-dialog .player-rejoin-btn', function() { $('#pl
 $(document).on('click', '#player-code-dialog .player-code-cancel-btn', function() { $('#player-code-dialog').removeClass('show'); $('#player-code-container').hide(); $('#player-dialog').addClass('show'); });
 $(document).on('click', '#player-code-dialog .player-code-submit-btn', function() { submitPlayerCodeForm(); });
 $(document).on('onmouseout', '.copy', function() { $(this).find('.tooltip').text('Copy to clipboard'); });
+$(document).on('click', '.vote-btn', function() {
+    $('#voting-dialog').removeClass('show');
+    submitVote($(this).data('matchup'), $(this).data('player'));
+});
 $(document).on('click', '#player-code-dialog .player-code-btn', function() {
     $('#player-code-dialog').removeClass('show');
     if (player.Type === 1) {
@@ -28,7 +32,7 @@ $(document).on('click', '.copy', function() {
 $(document).on('click', '#welcome-dialog .welcome-confirm-btn', function() {
     $(this).closest('.menu').removeClass('show');
     setTimeout(function() {
-        $('#prompt-dialog p').text(bracket.Prompt1);
+        $('#prompt-dialog p').text(bracket.CurrentPrompt);
         $('#prompt-dialog').addClass('show');
     }, 1000);
 });
@@ -52,6 +56,23 @@ $(document).on('click', '#prompt-dialog .answer-submit-btn', function() {
     let answer = $(this).closest('.menu').find('textarea').val();
     submitAnswerForm(answer);
 });
+
+function submitVote(matchupID, votee) {
+    return new Promise(resolve => {
+        let flowURL = 'https://prod-187.westus.logic.azure.com:443/workflows/4015855eeeba49a7ac6369d4d00c3857/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=WT3VDIGSSqYdNqqjmbC8OEM8SvNcI6EqdcXrvXN1x9I';
+        let req = new XMLHttpRequest();
+        req.open("POST", flowURL, true);
+        req.setRequestHeader("Content-Type", "application/json");
+        req.onreadystatechange = function () {
+            if (this.readyState === 4) {
+                req.onreadystatechange = null;
+                let result = JSON.parse(this.response);
+                resolve(result);
+            }
+        };
+        req.send(JSON.stringify({ "Matchup": matchupID, "Voter": player.ID.toString(), "Votee": votee.toString() }));
+    });
+}
 
 async function submitAnswerForm(answer) {
     if (answer !== '') {
@@ -118,7 +139,7 @@ async function submitPlayerCodeForm() {
                 showToast(`Welcome back ${player.Name}!`);
                 if (player.Type === 1) {
                     setTimeout(function() {
-                        $('#prompt-dialog p').text(bracket.Prompt1);
+                        $('#prompt-dialog p').text(bracket.CurrentPrompt);
                         $('#prompt-dialog').addClass('show');
                     }, 1000);
                 } else populateBracket();
@@ -255,7 +276,7 @@ function populateBracket() {
     let players = bracket.Players, audience = bracket.Audience;
 
     $('#bracket-code').html(`<span style="font-size: 16px;">Bracket Code</span><br>`+bracket.Code.toUpperCase());
-    $('#prompt p').text(bracket.Prompt1);
+    $('#prompt p').text(bracket.CurrentPrompt);
     
     for (let p = 0; p < players.length; p++) {
         let playerBlurb = '';
@@ -282,7 +303,10 @@ function populateBracket() {
 
     if (bracket.Status !== 122430000) {
         $('#prompt span').text(`Round ${bracket.Status.toString().slice(-1)}:`);
-
+        let matchup = bracket.Matchups[0];
+        $('#voting-dialog .opponents').html(`
+            <button type="button" class="btn btn-warning vote-btn" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player1ID}">${matchup.Player1Answer}</button>
+            <button type="button" class="btn btn-warning vote-btn" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player2ID}">${matchup.Player2Answer}</button>`);
         $('#voting-dialog').addClass('show');
     }
 }
