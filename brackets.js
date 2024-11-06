@@ -319,7 +319,7 @@ function populateBracket() {
     if (bracket.Status !== 122430000) {
         $('#prompt span').text(`Round ${bracket.Status.toString().slice(-1)}:`);
         player['matchups'] = bracket.Matchups.filter(m => m._jnc_player1id_value !== player.ID && m._jnc_player2id_value !== player.ID).map(m => ({ ...m, 'VoteSubmitted': false }));
-        let matchup = matchups.filter(m => !m.VoteSubmitted)[0];
+        let matchup = player.matchups.filter(m => !m.VoteSubmitted)[0];
         $('#voting-dialog .opponents').html(`
             <button type="button" class="btn btn-warning vote-btn" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player1ID}">${matchup.Player1Answer}</button>
             <button type="button" class="btn btn-warning vote-btn" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player2ID}">${matchup.Player2Answer}</button>`);
