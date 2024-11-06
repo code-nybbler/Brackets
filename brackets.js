@@ -15,12 +15,12 @@ $(document).on('click', '.vote-btn', async function() {
         showToast(result.error.message);
     } else {
         // mark vote submitted
-        let matchup = player.matchups.find(m => m.MatchupID === $(this).data('matchup'));
+        let matchup = player.Matchups.find(m => m.MatchupID === $(this).data('matchup'));
         if (matchup !== undefined) {
             matchup.VoteSubmitted = true;
 
-            if (player.matchups.filter(m => !m.VoteSubmitted).length > 0) {
-                matchup = player.matchups.filter(m => !m.VoteSubmitted)[0];
+            if (player.Matchups.filter(m => !m.VoteSubmitted).length > 0) {
+                matchup = player.Matchups.filter(m => !m.VoteSubmitted)[0];
                 $('#voting-dialog .opponents').html(`
                     <button type="button" class="btn btn-warning vote-btn" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player1ID}">${matchup.Player1Answer}</button>
                     <button type="button" class="btn btn-warning vote-btn" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player2ID}">${matchup.Player2Answer}</button>`);
@@ -320,12 +320,14 @@ function populateBracket() {
 
     if (bracket.Status !== 122430000) {
         $('#prompt span').text(`Round ${bracket.Status.toString().slice(-1)}:`);
-        player['matchups'] = bracket.Matchups.filter(m => m.Player1ID !== player.ID && m.Player2ID !== player.ID).map(m => ({ ...m, 'VoteSubmitted': false }));
-        let matchup = player.matchups.filter(m => !m.VoteSubmitted)[0];
-        $('#voting-dialog .opponents').html(`
-            <button type="button" class="btn btn-warning vote-btn" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player1ID}">${matchup.Player1Answer}</button>
-            <button type="button" class="btn btn-warning vote-btn" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player2ID}">${matchup.Player2Answer}</button>`);
-        $('#voting-dialog').addClass('show');
+
+        if (player.Matchups.filter(m => !m.VoteSubmitted).length > 0) {
+            let matchup = player.Matchups.filter(m => !m.VoteSubmitted)[0];
+            $('#voting-dialog .opponents').html(`
+                <button type="button" class="btn btn-warning vote-btn" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player1ID}">${matchup.Player1Answer}</button>
+                <button type="button" class="btn btn-warning vote-btn" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player2ID}">${matchup.Player2Answer}</button>`);
+            $('#voting-dialog').addClass('show');
+        }
     }
 }
 
