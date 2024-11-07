@@ -308,7 +308,7 @@ function populateBracket() {
                 break;
             default: break;
         }
-        $(`#p${p+1}`).append(`<span class="player" data-id="${players[p].ID}">${playerBlurb}</span>`);
+        $(`#p${p+1}`).append(`<br><span class="player" data-id="${players[p].ID}">${playerBlurb}</span>`);
     }
 
     $('#audience-container').text('Audience').append('<div id="audience"></div>');
