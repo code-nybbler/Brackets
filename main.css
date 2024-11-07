@@ -213,7 +213,7 @@ body {
     transform: translateX(-50%);
 }
 .votes { margin-bottom: 15px; }
-.vote { background: url('./thumbs-up.png'); width: 16%; height: 50px; display: inline-block; background-size: contain; margin: auto; }
+.vote { background: url('./thumbs-up.png'); width: 16%; height: 34px; display: inline-block; background-size: contain; margin: auto; filter: drop-shadow(2px 4px 6px #333); }
 #audience-container {
     width: fit-content;
     margin: auto;
