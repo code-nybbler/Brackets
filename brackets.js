@@ -327,7 +327,7 @@ function populateBracket() {
                 <button type="button" class="btn btn-warning vote-btn" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player1ID}">${matchup.Player1Answer}</button>
                 <button type="button" class="btn btn-warning vote-btn" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player2ID}">${matchup.Player2Answer}</button>`);
             $('#voting-dialog').addClass('show');
-        }
+        } else showVotes();
     }
 }
 
