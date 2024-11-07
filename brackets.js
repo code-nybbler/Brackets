@@ -25,6 +25,17 @@ $(document).on('click', '.vote-btn', async function() {
                     <button type="button" class="btn btn-warning vote-btn" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player1ID}">${matchup.Player1Answer}</button>
                     <button type="button" class="btn btn-warning vote-btn" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player2ID}">${matchup.Player2Answer}</button>`);
                 $('#voting-dialog').addClass('show');
+            } else {
+                // display all votes
+                for (let m = 0; m < bracket.Matchups.length; m++) {
+                    matchup = bracket.Matchups[m];
+                    for (let v = 0; v < matchup.Player1Votes; v++) {
+                        $(`.player[data-playerid="${matchup.Player1ID}"`).siblings('.votes').append('<span class="vote"></span>');
+                    }
+                    for (let v = 0; v < matchup.Player2Votes; v++) {
+                        $(`.player[data-playerid="${matchup.Player2ID}"`).siblings('.votes').append('<span class="vote"></span>');
+                    }
+                }
             }
         } else showToast('Could not submit vote at this time');
     }
@@ -308,7 +319,7 @@ function populateBracket() {
                 break;
             default: break;
         }
-        $(`#p${p+1}`).append(`<span class="player">${playerBlurb}</span>`);
+        $(`#p${p+1}`).append(`<span class="player" data-playerid="${players[p].ID}">${playerBlurb}</span>`);
     }
 
     $('#audience-container').text('Audience').append('<div id="audience"></div>');
