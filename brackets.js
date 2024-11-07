@@ -25,18 +25,7 @@ $(document).on('click', '.vote-btn', async function() {
                     <button type="button" class="btn btn-warning vote-btn" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player1ID}">${matchup.Player1Answer}</button>
                     <button type="button" class="btn btn-warning vote-btn" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player2ID}">${matchup.Player2Answer}</button>`);
                 $('#voting-dialog').addClass('show');
-            } else {
-                // display all votes
-                for (let m = 0; m < bracket.Matchups.length; m++) {
-                    matchup = bracket.Matchups[m];
-                    for (let v = 0; v < matchup.Player1Votes; v++) {
-                        $(`.player[data-id="${matchup.Player1ID}"]`).siblings('.votes').append('<span class="vote"></span>');
-                    }
-                    for (let v = 0; v < matchup.Player2Votes; v++) {
-                        $(`.player[data-id="${matchup.Player2ID}"]`).siblings('.votes').append('<span class="vote"></span>');
-                    }
-                }
-            }
+            } else showVotes();
         } else showToast('Could not submit vote at this time');
     }
 });
@@ -338,6 +327,19 @@ function populateBracket() {
                 <button type="button" class="btn btn-warning vote-btn" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player1ID}">${matchup.Player1Answer}</button>
                 <button type="button" class="btn btn-warning vote-btn" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player2ID}">${matchup.Player2Answer}</button>`);
             $('#voting-dialog').addClass('show');
+        }
+    }
+}
+
+function showVotes() {
+    // display all votes
+    for (let m = 0; m < bracket.Matchups.length; m++) {
+        matchup = bracket.Matchups[m];
+        for (let v = 0; v < matchup.Player1Votes; v++) {
+            $(`.player[data-id="${matchup.Player1ID}"]`).siblings('.votes').append('<span class="vote"></span>');
+        }
+        for (let v = 0; v < matchup.Player2Votes; v++) {
+            $(`.player[data-id="${matchup.Player2ID}"]`).siblings('.votes').append('<span class="vote"></span>');
         }
     }
 }
