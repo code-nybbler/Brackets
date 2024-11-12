@@ -18,14 +18,8 @@ $(document).on('click', '.vote-btn', async function() {
         let matchup = player.Matchups.find(m => m.MatchupID === $(this).data('matchup'));
         if (matchup !== undefined) {
             matchup.VoteSubmitted = true;
-
-            if (player.Matchups.filter(m => !m.VoteSubmitted).length > 0) {
-                matchup = player.Matchups.filter(m => !m.VoteSubmitted)[0];
-                $('#voting-dialog .opponents').html(`
-                    <button type="button" class="btn btn-warning vote-btn" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player1ID}">${matchup.Player1Answer}</button>
-                    <button type="button" class="btn btn-warning vote-btn" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player2ID}">${matchup.Player2Answer}</button>`);
-                $('#voting-dialog').addClass('show');
-            } else showVotes();
+            if (player.Matchups.filter(m => !m.VoteSubmitted).length > 0) showNewMatchup();
+            else if (bracket.VotingComplete) showVotes();
         } else showToast('Could not submit vote at this time');
     }
 });
@@ -320,15 +314,17 @@ function populateBracket() {
 
     if (bracket.Status !== 122430000) {
         $('#prompt span').text(`Round ${bracket.Status.toString().slice(-1)}:`);
-
-        if (player.Matchups.filter(m => !m.VoteSubmitted).length > 0) {
-            let matchup = player.Matchups.filter(m => !m.VoteSubmitted)[0];
-            $('#voting-dialog .opponents').html(`
-                <button type="button" class="btn btn-warning vote-btn" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player1ID}">${matchup.Player1Answer}</button>
-                <button type="button" class="btn btn-warning vote-btn" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player2ID}">${matchup.Player2Answer}</button>`);
-            $('#voting-dialog').addClass('show');
-        } else showVotes();
+        if (player.Matchups.filter(m => !m.VoteSubmitted).length > 0) showNewMatchup();
+        else if (bracket.VotingComplete) showVotes();
     }
+}
+
+function showNewMatchup() {
+    let matchup = player.Matchups.filter(m => !m.VoteSubmitted)[0];
+    $('#voting-dialog .opponents').html(`
+        <button type="button" class="btn btn-warning vote-btn" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player1ID}">${matchup.Player1Answer}</button>
+        <button type="button" class="btn btn-warning vote-btn" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player2ID}">${matchup.Player2Answer}</button>`);
+    $('#voting-dialog').addClass('show');
 }
 
 function showVotes() {
