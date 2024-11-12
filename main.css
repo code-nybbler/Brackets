@@ -212,10 +212,9 @@ body {
     left: 50%;
     transform: translateX(-50%);
 }
-.votes { margin-bottom: 15px; }
 .vote {
     background: url('./thumbs-up.png');
-    width: 16%;
+    width: 13%;
     height: 34px;
     display: inline-block;
     background-size: contain;
