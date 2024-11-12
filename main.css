@@ -187,6 +187,11 @@ body {
     from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
 }
+@keyframes typing {
+    from {
+        width: 0
+    }
+}
 @media all and (max-width: 1024px) {
     body { background-size: contain; }
     h2 { font-size: 5rem; }
