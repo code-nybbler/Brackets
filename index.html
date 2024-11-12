@@ -87,14 +87,14 @@
         <div id="toast-msg"></div>
         <div class="menu strike-menu" id="code-dialog">
             <h1>Enter code
-                <input type="text" id="code-input" placeholder="ABCD" oninput="this.value = this.value.toUpperCase()">
+                <input type="text" id="code-input" placeholder="ABCD" maxlength="4" oninput="this.value = this.value.toUpperCase()">
             </h1>
             <button type="button" class="btn btn-outline-success code-input-btn">Find Bracket</button>
             <button type="button" class="btn btn-outline-light create-bracket-btn">Create Bracket</button>
         </div>
         <div class="menu strike-menu" id="player-dialog">
             <h1>Join the bracket!</h1><hr>
-            <input type="text" id="player-input" placeholder="John Doe" oninput="this.value = this.value.toUpperCase()">
+            <input type="text" id="player-input" placeholder="John Doe" maxlength="6" oninput="this.value = this.value.toUpperCase()">
             <button type="button" class="btn btn-outline-success player-bracket-btn">Join Bracket</button>
             <button type="button" class="btn btn-outline-light player-audience-btn">Join Audience</button>
             <button type="button" class="btn btn-outline-dark player-rejoin-btn">Rejoin Bracket</button>
@@ -102,7 +102,7 @@
         <div class="menu strike-menu" id="player-code-dialog">
             <h1>Your Player Code</h1><hr>
             <div id="player-code-container">
-                <input type="text" id="player-code" placeholder="ABCDEF" oninput="this.value = this.value.toUpperCase()">
+                <input type="text" id="player-code" placeholder="ABCDEF" maxlength="6" oninput="this.value = this.value.toUpperCase()">
                 <button type="button" class="btn btn-outline-success player-code-submit-btn">Rejoin</button>
                 <button type="button" class="btn btn-outline-light player-code-cancel-btn">Cancel</button>
             </div>
@@ -123,7 +123,7 @@
         <div class="menu" id="prompt-dialog">
             <h1>Answer the prompt</h1><hr>
             <p></p>
-            <textarea rows="4" id="answer-input"></textarea>
+            <textarea rows="4" id="answer-input" maxlength="50"></textarea>
             <button type="button" class="btn btn-outline-success answer-submit-btn">Submit Answer</button>
         </div>
         <div class="menu strike-menu" id="voting-dialog">
