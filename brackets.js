@@ -312,10 +312,26 @@ function populateBracket() {
 
     $('#game-container').show();
 
-    if (bracket.Status !== 1) { // not new
-        $('#prompt span').text(`Round ${bracket.Status.toString().slice(-1)}:`);
+    if (bracket.Status === 1) { // new game
+        for (let p = 0; p < players.length; p++) {
+            let playerBlurb = players[p].Name;
+            $(`#p${p+1}`).append(`<br><span class="player" data-id="${players[p].ID}">${playerBlurb}</span>`);
+        }
+    } else { // in progress
+        $('#prompt span').text(`Round ${bracket.Status.toString().slice(-1)+1}:`);
         if (player.Matchups.filter(m => !m.VoteSubmitted).length > 0) showNewMatchup();
-        else if (bracket.VotingComplete) showVotes();
+        else {
+            let matchups = bracket.Matchups;
+            $(`#p1`).append(`<br><span class="player" data-id="${matchups[0].Player1ID}">${matchups[0].Player1Answer}</span>`);
+            $(`#p2`).append(`<br><span class="player" data-id="${matchups[1].Player2ID}">${matchups[1].Player2Answer}</span>`);
+            $(`#p3`).append(`<br><span class="player" data-id="${matchups[2].Player1ID}">${matchups[2].Player1Answer}</span>`);
+            $(`#p4`).append(`<br><span class="player" data-id="${matchups[3].Player2ID}">${matchups[3].Player2Answer}</span>`);
+            $(`#p5`).append(`<br><span class="player" data-id="${matchups[4].Player1ID}">${matchups[4].Player1Answer}</span>`);
+            $(`#p6`).append(`<br><span class="player" data-id="${matchups[5].Player2ID}">${matchups[5].Player2Answer}</span>`);
+            $(`#p7`).append(`<br><span class="player" data-id="${matchups[6].Player1ID}">${matchups[6].Player1Answer}</span>`);
+            $(`#p8`).append(`<br><span class="player" data-id="${matchups[7].Player2ID}">${matchups[7].Player2Answer}</span>`);
+            if (bracket.VotingComplete) showVotes();
+        }
     }
 }
 
