@@ -176,7 +176,7 @@ async function submitCodeForm() {
             if (bracket !== undefined && bracket !== null) {
                 $('#code-dialog').removeClass('show');
 
-                if (bracket.Status !== 122430000) { // Bracket is in progress
+                if (bracket.Status !== 1) { // Bracket is in progress
                     $('.player-bracket-btn').remove();
                 }
                 $('#player-dialog').addClass('show');
@@ -292,12 +292,12 @@ function populateBracket() {
     for (let p = 0; p < players.length; p++) {
         let playerBlurb = '';
         switch(bracket.Status) {
-            case 122430000: // new game
+            case 1: // new game
                 playerBlurb = players[p].Name;
                 break;
+            case 122430000:
             case 122430001:
-            case 122430002:
-            case 122430003: // in progress
+            case 122430002: // in progress
                 playerBlurb = players[p].Answer !== null ? players[p].Answer : '?';
                 break;
             default: break;
@@ -312,7 +312,7 @@ function populateBracket() {
 
     $('#game-container').show();
 
-    if (bracket.Status !== 122430000) {
+    if (bracket.Status !== 1) { // not new
         $('#prompt span').text(`Round ${bracket.Status.toString().slice(-1)}:`);
         if (player.Matchups.filter(m => !m.VoteSubmitted).length > 0) showNewMatchup();
         else if (bracket.VotingComplete) showVotes();
