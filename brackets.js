@@ -300,7 +300,7 @@ function populateBracket() {
             $(`#p${p+1}`).append(`<br><span class="player" data-id="${players[p].ID}">${playerBlurb}</span>`);
         }
     } else { // in progress
-        $('#prompt span').text(`Round ${bracket.Status.toString().slice(-1)+1}:`);
+        $('#prompt span').text(`Round ${parseInt(bracket.Status.toString().slice(-1))+1}:`);
         if (player.Matchups.filter(m => !m.VoteSubmitted).length > 0) showNewMatchup();
         else {
             let matchups = bracket.Matchups;

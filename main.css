@@ -20,6 +20,7 @@ body {
     rotate: -10deg;
     -webkit-text-stroke: 2px #fbebcc;
     border-radius: 15px;
+    animation: typing 1s steps(22);
 }
 #bracket-code {
     position: absolute;
@@ -43,7 +44,7 @@ body {
     background: rgba(51, 51, 51, .9);
     border-radius: 50px;
 }
-#prompt p { font-size: 40px; }
+#prompt p { font-size: 40px; animation: typing 1s steps(22); }
 .game-container {
     width: 100%;
     margin: 0 auto;
@@ -78,7 +79,7 @@ body {
 }
 #player-code-container ,
 #code-copy-container { display: none; }
-.menu p { font-size: 1.5rem; }
+.menu p { font-size: 1.5rem; animation: typing 1s steps(22); }
 .menu input,
 .menu textarea { background-color: #fbebcc; }
 .menu button { width: 85%; height: 100px; margin: auto; margin-top: 15px; font-size: 3rem; border: 2px solid; }
