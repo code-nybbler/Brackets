@@ -315,13 +315,13 @@ function populateBracket() {
             if (bracket.VotingComplete) {
                 showVotes();
                 let r1w1 = matchups[0].Player1Votes > matchups[0].Player2Votes ? { ID: matchups[0].Player1ID, Answer: matchups[0].Player1Answer } : { ID: matchups[0].Player2ID, Answer: matchups[0].Player2Answer };
-                $('r1w1').append(`<br><span class="player" data-id="${r1w1.ID}">${r1w1.Answer}</span>`);
+                $('#r1w1').append(`<br><span class="player" data-id="${r1w1.ID}">${r1w1.Answer}</span>`);
                 let r1w2 = matchups[1].Player1Votes > matchups[1].Player2Votes ? { ID: matchups[1].Player1ID, Answer: matchups[1].Player1Answer } : { ID: matchups[1].Player2ID, Answer: matchups[1].Player2Answer };
-                $('r1w2').append(`<br><span class="player" data-id="${r1w2.ID}">${r1w2.Answer}</span>`);
+                $('#r1w2').append(`<br><span class="player" data-id="${r1w2.ID}">${r1w2.Answer}</span>`);
                 let r1w3 = matchups[2].Player1Votes > matchups[2].Player2Votes ? { ID: matchups[2].Player1ID, Answer: matchups[2].Player1Answer } : { ID: matchups[2].Player2ID, Answer: matchups[2].Player2Answer };
-                $('r1w3').append(`<br><span class="player" data-id="${r1w3.ID}">${r1w3.Answer}</span>`);
+                $('#r1w3').append(`<br><span class="player" data-id="${r1w3.ID}">${r1w3.Answer}</span>`);
                 let r1w4 = matchups[3].Player1Votes > matchups[3].Player2Votes ? { ID: matchups[3].Player1ID, Answer: matchups[3].Player1Answer } : { ID: matchups[3].Player2ID, Answer: matchups[3].Player2Answer };
-                $('r1w4').append(`<br><span class="player" data-id="${r1w4.ID}">${r1w4.Answer}</span>`);
+                $('#r1w4').append(`<br><span class="player" data-id="${r1w4.ID}">${r1w4.Answer}</span>`);
             }
         }
     }
