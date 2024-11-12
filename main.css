@@ -231,6 +231,8 @@ body {
     background-size: contain;
     background-repeat: no-repeat;
     margin: auto;
+    margin-left: 2px;
+    margin-right: 2px;
 }
 #audience-container {
     width: fit-content;
