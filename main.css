@@ -21,7 +21,7 @@ body {
     -webkit-text-stroke: 2px #fbebcc;
     border-radius: 15px;
 }
-#title span { animation: typing 1s steps(22); }
+.typed { width: 0; animation: typing 1s steps(20, end) forwards; }
 #bracket-code {
     position: absolute;
     top: 30px;
@@ -44,7 +44,7 @@ body {
     background: rgba(51, 51, 51, .9);
     border-radius: 50px;
 }
-#prompt p { font-size: 40px; animation: typing 1s steps(22); }
+#prompt p { font-size: 40px; }
 .game-container {
     width: 100%;
     margin: 0 auto;
@@ -79,7 +79,7 @@ body {
 }
 #player-code-container ,
 #code-copy-container { display: none; }
-.menu p { font-size: 1.5rem; animation: typing 1s steps(22); }
+.menu p { font-size: 1.5rem; }
 .menu input,
 .menu textarea { background-color: #fbebcc; }
 .menu button { width: 85%; height: 100px; margin: auto; margin-top: 15px; font-size: 3rem; border: 2px solid; }
@@ -188,9 +188,8 @@ body {
     to {bottom: 0; opacity: 0;}
 }
 @keyframes typing {
-    from {
-        width: 0
-    }
+    from { width: 0; }
+    to { width: 100%; }
 }
 @media all and (max-width: 1024px) {
     body { background-size: contain; }
