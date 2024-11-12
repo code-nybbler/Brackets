@@ -27,6 +27,7 @@ body {
     animation: 
     typing 1s steps(20, end) forwards;
     width: 0;
+    border-right: 3px solid #fbebcc;
 }
 #bracket-code {
     position: absolute;
@@ -195,7 +196,7 @@ body {
 }
 @keyframes typing {
     from { width: 0; }
-    to { width: 100%; }
+    to { width: 100%; border-right: 0; }
 }
 @media all and (max-width: 1024px) {
     body { background-size: contain; }
