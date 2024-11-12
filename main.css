@@ -21,7 +21,13 @@ body {
     -webkit-text-stroke: 2px #fbebcc;
     border-radius: 15px;
 }
-.typed { width: 0; animation: typing 1s steps(20, end) forwards; }
+.typed {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: 
+    typing 1s steps(20, end) forwards;
+    width: 0;
+}
 #bracket-code {
     position: absolute;
     top: 30px;
