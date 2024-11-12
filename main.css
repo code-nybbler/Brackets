@@ -20,8 +20,8 @@ body {
     rotate: -10deg;
     -webkit-text-stroke: 2px #fbebcc;
     border-radius: 15px;
-    animation: typing 1s steps(22);
 }
+#title span { animation: typing 1s steps(22); }
 #bracket-code {
     position: absolute;
     top: 30px;
