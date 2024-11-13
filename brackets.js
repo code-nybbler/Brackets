@@ -176,7 +176,7 @@ async function submitCodeForm() {
             if (bracket !== undefined && bracket !== null) {
                 $('#code-dialog').removeClass('show');
 
-                if (bracket.Status !== 1) { // Bracket is in progress
+                if (bracket.Round > 0) { // Bracket is in progress
                     $('.player-bracket-btn').remove();
                 }
                 $('#player-dialog').addClass('show');
@@ -285,6 +285,8 @@ function addPlayer(player) {
 
 function populateBracket() {
     let players = bracket.Players, audience = bracket.Audience;
+    let roundMatchups = bracket.Matchups.filter(m => m.Round === bracket.Round);
+    bracket['VotingComplete'] = roundMatchups.map(m => m.Player1Votes + m.Player2Votes).reduce((v, votes) => v + votes, 0) === 24;
 
     $('#bracket-code').html(`<span style="font-size: 16px;">Bracket Code</span><br>`+bracket.Code.toUpperCase());
     $('#prompt p').text(bracket.CurrentPrompt);
@@ -294,13 +296,13 @@ function populateBracket() {
         $('#audience').append(`<span class="audience-member">${audience[p].Name}</span>`);
     }
 
-    if (bracket.Status === 1) { // new game
+    if (bracket.Round === 0) { // new game
         for (let p = 0; p < players.length; p++) {
             let playerBlurb = players[p].Name;
             $(`#p${p+1}`).append(`<br><span class="player" data-id="${players[p].ID}">${playerBlurb}</span>`);
         }
     } else { // in progress
-        $('#prompt span').text(`Round ${parseInt(bracket.Status.toString().slice(-1))+1}:`);
+        $('#prompt span').text(`Round ${bracket.Round}:`);
         if (player.Matchups.filter(m => !m.VoteSubmitted).length > 0) showNewMatchup();
         else {
             let matchups = bracket.Matchups;
