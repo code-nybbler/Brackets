@@ -223,6 +223,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+.player-highlight { border: 3px solid #70cdc9; color: #70cdc9; }
 .vote {
     background: url('./thumbs-up.png');
     width: 13%;

@@ -325,7 +325,7 @@ function populateBracket() {
             }
         }
     }
-    
+    $(`.player[data-id="${player.ID}"]`).addClass('player-highlight');
     $('#game-container').show();
 }
 
