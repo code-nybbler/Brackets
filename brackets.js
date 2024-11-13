@@ -286,7 +286,7 @@ function addPlayer(player) {
 function populateBracket() {
     let players = bracket.Players, audience = bracket.Audience;
     let roundMatchups = bracket.Matchups.filter(m => m.Round === bracket.Round);
-    bracket['VotingComplete'] = roundMatchups.map(m => m.Player1Votes + m.Player2Votes).reduce((v, votes) => v + votes, 0) === 24;
+    bracket['VotingComplete'] = roundMatchups.map(m => m.Player1Votes + m.Player2Votes).reduce((v, votes) => v + votes, 0) === 28;
 
     $('#bracket-code').html(`<span style="font-size: 16px;">Bracket Code</span><br>`+bracket.Code.toUpperCase());
     $('#prompt p').text(bracket.CurrentPrompt);
