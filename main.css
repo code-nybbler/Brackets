@@ -207,12 +207,12 @@ body {
     #player-dialog input { width: 90%; font-size: 40px; margin-top: 15px; border: 2px solid; border-radius: 15px; }
 }
 #bracket th,
-#bracket td { text-align: center; vertical-align: middle; height: 50px; border: none; position: relative; width: 5%; }
+#bracket td { text-align: center; vertical-align: middle; height: 50px; border: none; position: relative; width: 14%; }
 .player {
-    width: 80%;
-    padding: 15px;
+    width: 90%;
+    padding: 10px;
     background-color: #333;
-    border-radius: 15px;
+    border-radius: 12px;
     display: block;
     font-weight: 600;
     color: #fbebcc;
@@ -252,9 +252,9 @@ body {
     border-radius: 15px;
 }
 .audience-member {
-    padding: 15px;
+    padding: 10px;
     background-color: #333;
-    border-radius: 15px;
+    border-radius: 12px;
     display: inline-block;
     font-weight: 600;
     color: #fbebcc;
