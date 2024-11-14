@@ -50,7 +50,7 @@ body {
     background: rgba(51, 51, 51, .9);
     border-radius: 50px;
 }
-#prompt p { font-size: 40px; }
+#prompt p { font-size: 30px; }
 .game-container {
     width: 100%;
     margin: 0 auto;
@@ -226,7 +226,7 @@ body {
 .player-highlight { border: 3px solid #70cdc9; color: #70cdc9; }
 .vote {
     background: url('./thumbs-up.png');
-    width: 13%;
+    width: 12%;
     height: 34px;
     display: inline-block;
     background-size: contain;
