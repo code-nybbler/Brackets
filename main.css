@@ -7,6 +7,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
 }
+.table { table-layout: fixed; }
 #game-container { display: none; }
 #title {
     background-color: #333;
@@ -38,7 +39,8 @@ body {
     font-size: 40px;
     text-align: center;
 }
-#prompt-container {
+.prompt-container {
+    display: none;
     text-align: center;
     width: fit-content;
     margin: auto;
@@ -48,7 +50,8 @@ body {
     background: rgb(51, 51, 51);
     border-radius: 30px;
 }
-#prompt-container p { font-size: 30px; }
+.prompt-container p { font-size: 30px; }
+#desktop-prompt { display: block; }
 .game-container {
     width: 100%;
     margin: 0 auto;
@@ -205,6 +208,8 @@ body {
     .menu .close-btn { height: 50px; width: 50px; font-size: 40px; border-radius: 15px; }
     #player-dialog .btn,
     #player-dialog input { width: 90%; font-size: 40px; margin-top: 15px; border: 2px solid; border-radius: 15px; }
+    #desktop-prompt { display: none; }
+    #mobile-prompt { display: block; }
 }
 #bracket th,
 #bracket td { text-align: center; vertical-align: middle; height: 50px; border: none; position: relative; width: 14%; }

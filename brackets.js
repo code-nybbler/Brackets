@@ -289,7 +289,7 @@ function populateBracket() {
     bracket['VotingComplete'] = roundMatchups.map(m => m.Player1Votes + m.Player2Votes).reduce((v, votes) => v + votes, 0) >= 24;
 
     $('#bracket-code').html(`<span style="font-size: 16px;">Bracket Code</span><br>`+bracket.Code.toUpperCase());
-    $('#prompt').text(bracket.CurrentPrompt);
+    $('.prompt').text(bracket.CurrentPrompt);
 
     $('#audience-container').text('Audience').append('<div id="audience"></div>');
     for (let p = 0; p < audience.length; p++) {
@@ -302,7 +302,7 @@ function populateBracket() {
             $(`#p${p+1}`).append(`<br><span class="player" data-id="${players[p].ID}">${playerBlurb}</span>`);
         }
     } else { // in progress
-        $('#prompt-container p').text(`Round ${bracket.Round}:`);
+        $('.prompt-container p').text(`Round ${bracket.Round}:`);
         if (player.Matchups.filter(m => !m.VoteSubmitted).length > 0) showNewMatchup();
         else {
             let matchups = bracket.Matchups;
