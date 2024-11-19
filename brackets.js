@@ -19,7 +19,7 @@ $(document).on('click', '.vote-btn', async function() {
         if (matchup !== undefined) {
             matchup.VoteSubmitted = true;
             if (player.Matchups.filter(m => !m.VoteSubmitted).length > 0) showNewMatchup();
-            else if (bracket.VotingComplete) showVotes();
+            else if (bracket.VotingComplete) populateBracket();
         } else showToast('Could not submit vote at this time');
     }
 });
@@ -297,33 +297,25 @@ function populateBracket() {
     }
 
     if (bracket.Round === 0) { // new game
-        for (let p = 0; p < players.length; p++) {
-            let playerBlurb = players[p].Name;
-            $(`#p${p+1}`).append(`<br><span class="player" data-id="${players[p].ID}">${playerBlurb}</span>`);
-        }
+        for (let p = 0; p < players.length; p++) $(`#p${p+1}`).append(`<br><span class="player" data-id="${players[p].ID}">${players[p].Name}</span>`);
     } else { // in progress
-        $('.prompt-container .round-label').text(`Round ${bracket.Round}:`);
-        
-        let matchups = bracket.Matchups;
-        $(`#p1`).append(`<br><span class="player" data-id="${matchups[0].Player1ID}">${matchups[0].Player1Answer}</span>`);
-        $(`#p2`).append(`<br><span class="player" data-id="${matchups[0].Player2ID}">${matchups[0].Player2Answer}</span>`);
-        $(`#p3`).append(`<br><span class="player" data-id="${matchups[1].Player1ID}">${matchups[1].Player1Answer}</span>`);
-        $(`#p4`).append(`<br><span class="player" data-id="${matchups[1].Player2ID}">${matchups[1].Player2Answer}</span>`);
-        $(`#p5`).append(`<br><span class="player" data-id="${matchups[2].Player1ID}">${matchups[2].Player1Answer}</span>`);
-        $(`#p6`).append(`<br><span class="player" data-id="${matchups[2].Player2ID}">${matchups[2].Player2Answer}</span>`);
-        $(`#p7`).append(`<br><span class="player" data-id="${matchups[3].Player1ID}">${matchups[3].Player1Answer}</span>`);
-        $(`#p8`).append(`<br><span class="player" data-id="${matchups[3].Player2ID}">${matchups[3].Player2Answer}</span>`);
+        $('.prompt-container .round-label').text(`Round ${bracket.Round}:`); // set round label
 
-        for (let round = 1; round <= 3; round++) {
-            if (bracket.Round > round) {
-                let roundMatchups = bracket.Matchups.filter(m => m.Round === round);
+        let roundMatchups = bracket.Matchups.filter(m => m.Round === 1); // get round 1 matchups
+        for (let m = 0; m < roundMatchups.length; m++) { // show each matchup answers
+            $(`#p${m*2+1}`).append(`<br><span class="player" data-id="${roundMatchups[m].Player1ID}">${roundMatchups[m].Player1Answer}</span>`);
+            $(`#p${m*2+2}`).append(`<br><span class="player" data-id="${roundMatchups[m].Player2ID}">${roundMatchups[m].Player2Answer}</span>`);
+        }
+        for (let round = 1; round <= 3; round++) { // loop through rounds
+            if (bracket.Round > round) { // show winners for each round
+                roundMatchups = bracket.Matchups.filter(m => m.Round === round);
                 for (let m = 0; m < roundMatchups.length; m++) {
                     $(`#r${round}w${m+1}`).append(`<br><span class="player" data-id="${roundMatchups[m].WinnerID}">${roundMatchups[m].WinnerAnswer}</span>`);
                 }
+                showVotes(roundMatchups); // reveal votes for round
             }
         }
-        if (bracket.VotingComplete) showVotes();
-        else if (player.Matchups.filter(m => !m.VoteSubmitted).length > 0) showNewMatchup();
+        if (player.Matchups.filter(m => !m.VoteSubmitted).length > 0) showNewMatchup(); // show matchup voting dialog
     }
     $(`.player[data-id="${player.ID}"]`).addClass('player-highlight');
     $('#game-container').show();
@@ -337,8 +329,7 @@ function showNewMatchup() {
     $('#voting-dialog').addClass('show');
 }
 
-function showVotes() {
-    let roundMatchups = bracket.Matchups.filter(m => m.Round === bracket.Round);
+function showVotes(roundMatchups) {
     // display all votes
     for (let m = 0; m < roundMatchups.length; m++) {
         matchup = roundMatchups[m];
