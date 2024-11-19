@@ -314,11 +314,18 @@ function populateBracket() {
         $(`#p7`).append(`<br><span class="player" data-id="${matchups[3].Player1ID}">${matchups[3].Player1Answer}</span>`);
         $(`#p8`).append(`<br><span class="player" data-id="${matchups[3].Player2ID}">${matchups[3].Player2Answer}</span>`);
         if (bracket.VotingComplete) {
+            if (bracket.Round > 1) {
+                $('#r1w1').append(`<br><span class="player" data-id="${matchups[0].WinnerID}">${matchups[0].WinnerAnswer}</span>`);
+                $('#r1w2').append(`<br><span class="player" data-id="${matchups[1].WinnerID}">${matchups[1].WinnerAnswer}</span>`);
+                $('#r1w3').append(`<br><span class="player" data-id="${matchups[2].WinnerID}">${matchups[2].WinnerAnswer}</span>`);
+                $('#r1w4').append(`<br><span class="player" data-id="${matchups[3].WinnerID}">${matchups[3].WinnerAnswer}</span>`);
+            }
+            if (bracket.Round > 2) {
+                $('#r2w1').append(`<br><span class="player" data-id="${matchups[0].WinnerID}">${matchups[0].WinnerAnswer}</span>`);
+                $('#r2w2').append(`<br><span class="player" data-id="${matchups[1].WinnerID}">${matchups[1].WinnerAnswer}</span>`);
+            }
+            if (bracket.Round > 3) $('#r3w1').append(`<br><span class="player" data-id="${matchups[0].WinnerID}">${matchups[0].WinnerAnswer}</span>`);
             showVotes();
-            $('#r1w1').append(`<br><span class="player" data-id="${matchups[0].WinnerID}">${matchups[0].WinnerAnswer}</span>`);
-            $('#r1w2').append(`<br><span class="player" data-id="${matchups[1].WinnerID}">${matchups[1].WinnerAnswer}</span>`);
-            $('#r1w3').append(`<br><span class="player" data-id="${matchups[2].WinnerID}">${matchups[2].WinnerAnswer}</span>`);
-            $('#r1w4').append(`<br><span class="player" data-id="${matchups[3].WinnerID}">${matchups[3].WinnerAnswer}</span>`);
         } else if (player.Matchups.filter(m => !m.VoteSubmitted).length > 0) showNewMatchup();
     }
     $(`.player[data-id="${player.ID}"]`).addClass('player-highlight');
@@ -334,9 +341,10 @@ function showNewMatchup() {
 }
 
 function showVotes() {
+    let roundMatchups = bracket.Matchups.filter(m => m.Round === bracket.Round);
     // display all votes
-    for (let m = 0; m < bracket.Matchups.length; m++) {
-        matchup = bracket.Matchups[m];
+    for (let m = 0; m < roundMatchups.length; m++) {
+        matchup = roundMatchups[m];
         for (let v = 0; v < matchup.Player1Votes; v++) {
             $(`.player[data-id="${matchup.Player1ID}"]`).siblings('.votes').append('<span class="vote"></span>');
         }
