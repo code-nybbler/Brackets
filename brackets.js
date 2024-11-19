@@ -352,6 +352,8 @@ function showVotes() {
         for (let v = 0; v < matchup.Player2Votes; v++) {
             $(`.player[data-id="${matchup.Player2ID}"]`).siblings('.votes').append('<span class="vote"></span>');
         }
+        if (matchup.WinnerID !== matchup.Player1ID) $(`.player[data-id="${matchup.Player1ID}"]`).append(`<span class="loser-slash"></span>`);
+        else if (matchup.WinnerID !== matchup.Player2ID) $(`.player[data-id="${matchup.Player2ID}"]`).append(`<span class="loser-slash"></span>`);
     }
 }
 
