@@ -148,7 +148,7 @@ async function submitPlayerCodeForm() {
             if (player !== undefined && player !== null) {
                 $('#player-code-dialog').removeClass('show');
                 showToast(`Welcome back ${player.Name}!`);
-                if (player.Type === 1 && player.Answer === '') {
+                if (player.Type === 1 && player.Answer === '' && bracket.Round === 0) {
                     setTimeout(function() {
                         $('#prompt-dialog p').text(bracket.CurrentPrompt);
                         $('#prompt-dialog').addClass('show');
