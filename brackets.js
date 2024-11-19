@@ -304,8 +304,10 @@ function populateBracket() {
             roundMatchups = bracket.Matchups.filter(m => m.Round === round);
             for (let m = 0; m < roundMatchups.length; m++) { // show each matchup answers
                 let matchup = roundMatchups[m];
-                $(`#p${m*2+1}`).append(`<br><span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player1ID}">${matchup.Player1Answer}</span>`);
-                $(`#p${m*2+2}`).append(`<br><span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player2ID}">${matchup.Player2Answer}</span>`);
+                if (round === 1) {
+                    $(`#p${m*2+1}`).append(`<br><span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player1ID}">${matchup.Player1Answer}</span>`);
+                    $(`#p${m*2+2}`).append(`<br><span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player2ID}">${matchup.Player2Answer}</span>`);
+                }
                 if (bracket.Round > round) { // show winner
                     $(`#r${round}w${m+1}`).append(`<br><span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.WinnerID}">${matchup.WinnerAnswer}</span>`);
                     showVotes(matchup);
