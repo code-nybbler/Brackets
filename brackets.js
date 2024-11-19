@@ -314,18 +314,14 @@ function populateBracket() {
         $(`#p7`).append(`<br><span class="player" data-id="${matchups[3].Player1ID}">${matchups[3].Player1Answer}</span>`);
         $(`#p8`).append(`<br><span class="player" data-id="${matchups[3].Player2ID}">${matchups[3].Player2Answer}</span>`);
 
-        if (bracket.Round > 1) {
-            $('#r1w1').append(`<br><span class="player" data-id="${matchups[0].WinnerID}">${matchups[0].WinnerAnswer}</span>`);
-            $('#r1w2').append(`<br><span class="player" data-id="${matchups[1].WinnerID}">${matchups[1].WinnerAnswer}</span>`);
-            $('#r1w3').append(`<br><span class="player" data-id="${matchups[2].WinnerID}">${matchups[2].WinnerAnswer}</span>`);
-            $('#r1w4').append(`<br><span class="player" data-id="${matchups[3].WinnerID}">${matchups[3].WinnerAnswer}</span>`);
+        for (let round = 1; round <= 3; round++) {
+            if (bracket.Round > round) {
+                let roundMatchups = bracket.Matchups.filter(m => m.Round === round);
+                for (let m = 0; m < roundMatchups.length; m++) {
+                    $(`#r${round}w${m+1}`).append(`<br><span class="player" data-id="${roundMatchups[m].WinnerID}">${roundMatchups[m].WinnerAnswer}</span>`);
+                }
+            }
         }
-        if (bracket.Round > 2) {
-            $('#r2w1').append(`<br><span class="player" data-id="${matchups[0].WinnerID}">${matchups[0].WinnerAnswer}</span>`);
-            $('#r2w2').append(`<br><span class="player" data-id="${matchups[1].WinnerID}">${matchups[1].WinnerAnswer}</span>`);
-        }
-        if (bracket.Round > 3) $('#r3w1').append(`<br><span class="player" data-id="${matchups[0].WinnerID}">${matchups[0].WinnerAnswer}</span>`);
-
         if (bracket.VotingComplete) showVotes();
         else if (player.Matchups.filter(m => !m.VoteSubmitted).length > 0) showNewMatchup();
     }

@@ -210,7 +210,7 @@ body {
     #audience { border: none; }
 }
 #bracket th,
-#bracket td { text-align: center; vertical-align: middle; height: 50px; border: none; position: relative; width: 14%; vertical-align: top; }
+#bracket td { text-align: center; vertical-align: middle; height: 50px; border: none; position: relative; width: 14%; }
 .player {
     width: 90%;
     padding: 10px;
@@ -220,7 +220,7 @@ body {
     font-weight: 600;
     font-size: 20px;
     color: #fbebcc;
-    position: relative;
+    position: absolute;
     top: 100%;
     left: 50%;
     transform: translate(-50%, -50%);
