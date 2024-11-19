@@ -220,7 +220,7 @@ body {
     font-weight: 600;
     font-size: 20px;
     color: #fbebcc;
-    position: absolute;
+    position: relative;
     top: 100%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -236,6 +236,16 @@ body {
     margin: auto;
     margin-left: 2px;
     margin-right: 2px;
+}
+.loser-slash {
+    border-top: 2px solid #df5244;
+    width: 99%;
+    height: 2px;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    rotate: -4deg;
 }
 #audience-container {
     width: fit-content;
