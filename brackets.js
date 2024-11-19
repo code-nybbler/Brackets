@@ -307,11 +307,11 @@ function populateBracket() {
                 if (round === 1) {
                     $(`#p${m*2+1}`).append(`<br><span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player1ID}">${matchup.Player1Answer}</span>`);
                     $(`#p${m*2+2}`).append(`<br><span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player2ID}">${matchup.Player2Answer}</span>`);
+                } else { // show winner
+                    $(`#r${round}w${m*2+1}`).append(`<br><span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player1ID}">${matchup.Player1Answer}</span>`);
+                    $(`#r${round}w${m*2+2}`).append(`<br><span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player2ID}">${matchup.Player2Answer}</span>`);
                 }
-                if (bracket.Round > round) { // show winner
-                    $(`#r${round}w${m+1}`).append(`<br><span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.WinnerID}">${matchup.WinnerAnswer}</span>`);
-                    showVotes(matchup);
-                }
+                if (bracket.Round > round) showVotes(matchup);
             }
         }
 
