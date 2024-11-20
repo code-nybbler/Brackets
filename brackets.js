@@ -308,8 +308,8 @@ function populateBracket() {
             for (let m = 0; m < roundMatchups.length; m++) { // show each matchup answers
                 let matchup = roundMatchups[m];
                 if (round === 1) {
-                    $(`#p${m*2+1}`).append(`<br><span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player1ID}">${matchup.Player1Answer}</span>`);
-                    $(`#p${m*2+2}`).append(`<br><span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player2ID}">${matchup.Player2Answer}</span>`);
+                    $(`#p${m*2+1}`).append(`<span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player1ID}">${matchup.Player1Answer}</span>`);
+                    $(`#p${m*2+2}`).append(`<span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player2ID}">${matchup.Player2Answer}</span>`);
                 } else { // show winner
                     $(`#r${round-1}w${m*2+1}`).append(`<br><span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player1ID}">${matchup.Player1Answer}</span>`);
                     $(`#r${round-1}w${m*2+2}`).append(`<br><span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player2ID}">${matchup.Player2Answer}</span>`);
