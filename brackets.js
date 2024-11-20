@@ -285,6 +285,9 @@ function addPlayer(player) {
 
 function populateBracket() {
     let players = bracket.Players, audience = bracket.Audience;
+
+    if (!bracket.Matchups) return;
+
     let roundMatchups = bracket.Matchups.filter(m => m.Round === bracket.Round);
 
     $('#bracket-code').html(`<span style="font-size: 16px;">Bracket Code</span><br>`+bracket.Code.toUpperCase());

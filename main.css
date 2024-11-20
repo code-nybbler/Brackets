@@ -105,6 +105,11 @@ body {
 .btn-outline-dark:focus,
 .btn-outline-dark:disabled,
 .btn-outline-dark:not(:disabled):not(.disabled):active { color: #333; background-color: #f27d59; border-color: #f27d59; box-shadow: 0 0 0 .2rem #f27d59; }
+.btn-warning { color: #333; border-color: #fcc978; }
+.btn-warning:hover,
+.btn-warning:focus,
+.btn-warning:disabled,
+.btn-warning:not(:disabled):not(.disabled):active { color: #333; background-color: #fcc978; border-color: #fcc978; box-shadow: 0 0 0 .2rem #fcc978; }
 #code-dialog.show,
 #player-dialog.show,
 #player-code-dialog.show,
@@ -112,7 +117,7 @@ body {
 #player-code-container.show,
 #welcome-dialog.show,
 #prompt-dialog.show,
-#voting-dialog.show { visibility: visible; opacity: 1; }
+#voting-dialog.show { visibility: visible; opacity: 1; border: 2px solid #fcc978; }
 #player-dialog #player-input,
 #player-code-dialog #player-code { width: 85%; height: 200px; margin: auto; text-align: center; font-size: 7rem; display: block; }
 #prompt-dialog #answer-input { width: 90%; margin: auto; text-align: center; font-size: 3rem; display: block; }
@@ -244,7 +249,7 @@ body {
 }
 .loser-slash {
     border-top: 2px solid #df5244;
-    width: 100%;
+    width: 85%;
     height: 2px;
     position: absolute;
     top: 50%;
