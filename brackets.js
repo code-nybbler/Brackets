@@ -308,11 +308,11 @@ function populateBracket() {
             for (let m = 0; m < roundMatchups.length; m++) { // show each matchup answers
                 let matchup = roundMatchups[m];
                 if (round === 1) {
-                    $(`#p${m*2+1}`).append(`<span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player1ID}">${matchup.Player1Answer}</span>`);
-                    $(`#p${m*2+2}`).append(`<span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player2ID}">${matchup.Player2Answer}</span>`);
+                    $(`#p${m*2+1}`).append(`<span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player1ID}">${matchup.Player1Answer}<div class="votes"></div></span>`);
+                    $(`#p${m*2+2}`).append(`<span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player2ID}">${matchup.Player2Answer}<div class="votes"></div></span>`);
                 } else { // show winner
-                    $(`#r${round-1}w${m*2+1}`).append(`<span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player1ID}">${matchup.Player1Answer}</span>`);
-                    $(`#r${round-1}w${m*2+2}`).append(`<span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player2ID}">${matchup.Player2Answer}</span>`);
+                    $(`#r${round-1}w${m*2+1}`).append(`<span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player1ID}">${matchup.Player1Answer}<div class="votes"></div></span>`);
+                    $(`#r${round-1}w${m*2+2}`).append(`<span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player2ID}">${matchup.Player2Answer}<div class="votes"></div></span>`);
                 }
                 if (bracket.Round > round) showVotes(matchup);
             }
@@ -334,10 +334,10 @@ function showNewMatchup() {
 
 function showVotes(matchup) {
     for (let v = 0; v < matchup.Player1Votes; v++) {
-        $(`.player[data-matchup="${matchup.MatchupID}"][data-player="${matchup.Player1ID}"]`).siblings('.votes').append('<span class="vote"></span>');
+        $(`.player[data-matchup="${matchup.MatchupID}"][data-player="${matchup.Player1ID}"]`).find('.votes').append('<span class="vote"></span>');
     }
     for (let v = 0; v < matchup.Player2Votes; v++) {
-        $(`.player[data-matchup="${matchup.MatchupID}"][data-player="${matchup.Player2ID}"]`).siblings('.votes').append('<span class="vote"></span>');
+        $(`.player[data-matchup="${matchup.MatchupID}"][data-player="${matchup.Player2ID}"]`).find('.votes').append('<span class="vote"></span>');
     }
     if (matchup.WinnerID !== matchup.Player1ID) $(`.player[data-matchup="${matchup.MatchupID}"][data-player="${matchup.Player1ID}"]`).addClass('loser').append(`<span class="loser-slash"></span>`);
     else if (matchup.WinnerID !== matchup.Player2ID) $(`.player[data-matchup="${matchup.MatchupID}"][data-player="${matchup.Player2ID}"]`).addClass('loser').append(`<span class="loser-slash"></span>`);
