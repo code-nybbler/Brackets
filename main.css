@@ -231,7 +231,7 @@ body {
     transform: translate(-50%, -50%);
 }
 .player-highlight { border: 3px solid #70cdc9; color: #70cdc9; }
-.votes { padding-bottom: 15px; }
+.votes { padding-bottom: 25px; }
 .vote {
     background: url('./thumbs-up.png');
     width: 25px;

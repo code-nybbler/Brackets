@@ -299,7 +299,7 @@ function populateBracket() {
     }
 
     if (bracket.Round === 0) { // new game
-        for (let p = 0; p < players.length; p++) $(`#p${p+1}`).append(`<br><span class="player" data-player="${players[p].ID}">${players[p].Name}</span>`);
+        for (let p = 0; p < players.length; p++) $(`#p${p+1}`).append(`<span class="player" data-player="${players[p].ID}">${players[p].Name}</span>`);
     } else { // in progress
         $('.prompt-container .round-label').text(`Round ${bracket.Round}:`); // set round label
 
@@ -311,8 +311,8 @@ function populateBracket() {
                     $(`#p${m*2+1}`).append(`<span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player1ID}">${matchup.Player1Answer}</span>`);
                     $(`#p${m*2+2}`).append(`<span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player2ID}">${matchup.Player2Answer}</span>`);
                 } else { // show winner
-                    $(`#r${round-1}w${m*2+1}`).append(`<br><span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player1ID}">${matchup.Player1Answer}</span>`);
-                    $(`#r${round-1}w${m*2+2}`).append(`<br><span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player2ID}">${matchup.Player2Answer}</span>`);
+                    $(`#r${round-1}w${m*2+1}`).append(`<span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player1ID}">${matchup.Player1Answer}</span>`);
+                    $(`#r${round-1}w${m*2+2}`).append(`<span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player2ID}">${matchup.Player2Answer}</span>`);
                 }
                 if (bracket.Round > round) showVotes(matchup);
             }
