@@ -215,7 +215,7 @@ body {
     #audience { border: none; }
 }
 #bracket th,
-#bracket td { text-align: center; vertical-align: middle; height: 50px; border: none; position: relative; width: 14%; }
+#bracket td { text-align: center; vertical-align: middle; height: 50px; border: none; position: relative; }
 .player {
     width: 90%;
     padding: 10px;
@@ -234,7 +234,7 @@ body {
 .votes {
     position: absolute;
     top: -30px;
-    width: 100%;
+    width: 90%;
 }
 .vote {
     background: url('./thumbs-up.png');
