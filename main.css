@@ -234,8 +234,7 @@ body {
 .votes {
     position: absolute;
     top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 100%;
 }
 .vote {
     background: url('./thumbs-up.png');
