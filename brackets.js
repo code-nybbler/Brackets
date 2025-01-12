@@ -289,6 +289,7 @@ function populateBracket() {
     if (!bracket.Matchups) return;
 
     let roundMatchups = bracket.Matchups.filter(m => m.Round === bracket.Round);
+    $('.votes').empty();
 
     $('#bracket-code').html(`<span style="font-size: 16px;">Bracket Code</span><br>`+bracket.Code.toUpperCase());
     $('.prompt').text(bracket.CurrentPrompt);
