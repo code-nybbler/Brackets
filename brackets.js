@@ -315,7 +315,7 @@ function populateBracket() {
                     $(`#r${round-1}w${m*2+1}`).append(`<span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player1ID}">${matchup.Player1Answer}<div class="votes"></div></span>`);
                     $(`#r${round-1}w${m*2+2}`).append(`<span class="player" data-matchup="${matchup.MatchupID}" data-player="${matchup.Player2ID}">${matchup.Player2Answer}<div class="votes"></div></span>`);
                 }
-                if (bracket.Round > round) showVotes(matchup);
+                if (matchup.WinnerID !== null) showVotes(matchup);
             }
         }
 
