@@ -295,7 +295,7 @@ function populateBracket() {
     $('.prompt').text(bracket.CurrentPrompt);
 
     $('#audience-container').empty();
-    $('#audience-container').append('<div id="audience"></div>');
+    $('#audience-container').text('Audience').append('<div id="audience"></div>');
     for (let p = 0; p < audience.length; p++) {
         $('#audience').append(`<span class="audience-member">${audience[p].Name}</span>`);
     }
@@ -339,7 +339,7 @@ function populateBracket() {
                 populateBracket();
             }
         }
-    }, 5000);
+    }, 15000);
 }
 
 function showNewMatchup() {
