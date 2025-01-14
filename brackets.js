@@ -301,7 +301,7 @@ function populateBracket() {
 
     // empty all player containers
     $('.player-container').empty();
-    
+
     if (bracket.Round === 0) { // new game
         for (let p = 0; p < players.length; p++) $(`#p${p+1}`).append(`<span class="player" data-player="${players[p].ID}">${players[p].Name}</span>`);
     } else { // in progress
@@ -328,7 +328,7 @@ function populateBracket() {
     $('#game-container').show();
 
     setTimeout(async function() {
-        let result = await getBracket(code);
+        let result = await getBracket(bracket.Code.toString());
         if (result.error !== undefined) {
             showToast(result.error.message);
             $('#code-input').addClass('input-error');
