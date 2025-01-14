@@ -294,7 +294,8 @@ function populateBracket() {
     $('#bracket-code').html(`<span style="font-size: 16px;">Bracket Code</span><br>`+bracket.Code.toUpperCase());
     $('.prompt').text(bracket.CurrentPrompt);
 
-    $('#audience').empty();
+    $('#audience-container').empty();
+    $('#audience-container').append('<div id="audience"></div>');
     for (let p = 0; p < audience.length; p++) {
         $('#audience').append(`<span class="audience-member">${audience[p].Name}</span>`);
     }
