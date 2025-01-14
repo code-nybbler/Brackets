@@ -323,7 +323,7 @@ function populateBracket() {
             }
         }
 
-        if (player.Matchups.filter(m => !m.VoteSubmitted).length > 0) showNewMatchup(); // show matchup voting dialog
+        if (player.Matchups !== undefined && player.Matchups.filter(m => !m.VoteSubmitted).length > 0) showNewMatchup(); // show matchup voting dialog
     }
     $(`.player[data-player="${player.ID}"]`).addClass('player-highlight');
     $('#game-container').show();
