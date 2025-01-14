@@ -294,11 +294,14 @@ function populateBracket() {
     $('#bracket-code').html(`<span style="font-size: 16px;">Bracket Code</span><br>`+bracket.Code.toUpperCase());
     $('.prompt').text(bracket.CurrentPrompt);
 
-    $('#audience-container').text('Audience').append('<div id="audience"></div>');
+    $('#audience').empty();
     for (let p = 0; p < audience.length; p++) {
         $('#audience').append(`<span class="audience-member">${audience[p].Name}</span>`);
     }
 
+    // empty all player containers
+    $('.player-container').empty();
+    
     if (bracket.Round === 0) { // new game
         for (let p = 0; p < players.length; p++) $(`#p${p+1}`).append(`<span class="player" data-player="${players[p].ID}">${players[p].Name}</span>`);
     } else { // in progress
@@ -323,6 +326,19 @@ function populateBracket() {
     }
     $(`.player[data-player="${player.ID}"]`).addClass('player-highlight');
     $('#game-container').show();
+
+    setTimeout(async function() {
+        let result = await getBracket(code);
+        if (result.error !== undefined) {
+            showToast(result.error.message);
+            $('#code-input').addClass('input-error');
+        } else {
+            bracket = result;
+            if (bracket !== undefined && bracket !== null) {
+                populateBracket();
+            }
+        }
+    }, 5000);
 }
 
 function showNewMatchup() {
