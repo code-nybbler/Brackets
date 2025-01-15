@@ -26,8 +26,7 @@ body {
 .typed {
     overflow: hidden;
     white-space: nowrap;
-    animation: 
-    typing 1s steps(20, end) forwards;
+    animation: typing 1s steps(20, end) forwards;
     width: 0;
 }
 #bracket-code {
@@ -202,18 +201,9 @@ body {
     from { width: 0; }
     to { width: 100%; }
 }
-@keyframes spin-in {
-    0% {
-      transform: rotateY(0);
-    }
-    80% {
-      transform: rotateY(360deg);
-      opacity: .8;
-    }
-    100% {
-      opacity: 1;
-      display: none;
-    }
+@keyframes player-typing {
+    from { width: 0; }
+    to { width: 90%; }
 }
 @media all and (max-width: 1024px) {
     body { background-image: none; }
@@ -230,7 +220,7 @@ body {
 #bracket th,
 #bracket td { text-align: center; vertical-align: middle; height: 50px; border: none; position: relative; }
 .player {
-    width: 90%;
+    width: 0;
     padding: 10px;
     background-color: #333;
     border-radius: 12px;
@@ -242,7 +232,7 @@ body {
     top: 100%;
     left: 50%;
     transform: translate(-50%, -50%);
-    animation: spin-in 1s ease-in forwards;
+    animation: player-typing 1s steps(20, end) forwards;
 }
 .player-highlight { border: 3px solid #70cdc9; color: #70cdc9; }
 .votes {
