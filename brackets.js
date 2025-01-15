@@ -322,6 +322,7 @@ function populateBracket() {
                 if (matchup.WinnerID !== null) showVotes(matchup);
             }
         }
+        $('.player').css('visibility', 'visible');
 
         if (player.Matchups !== undefined && player.Matchups.filter(m => !m.VoteSubmitted).length > 0) showNewMatchup(); // show matchup voting dialog
     }
