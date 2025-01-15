@@ -241,6 +241,9 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     visibility: hidden;
+}
+.player.show {
+    visibility: visible;
     -webkit-animation: player-fadein 1s;
     animation: player-fadein 1s;
 }
