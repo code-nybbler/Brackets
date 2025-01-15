@@ -205,14 +205,6 @@ body {
     from { width: 0; }
     to { width: 100%; }
 }
-@-webkit-keyframes player-fadein {
-    from {opacity: 0;} 
-    to {opacity: 1;}
-}
-@keyframes player-fadein {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
 @media all and (max-width: 1024px) {
     body { background-image: none; }
     h2 { font-size: 5rem; }
@@ -240,12 +232,6 @@ body {
     top: 100%;
     left: 50%;
     transform: translate(-50%, -50%);
-    visibility: hidden;
-}
-.player.show {
-    visibility: visible;
-    -webkit-animation: player-fadein 1s;
-    animation: player-fadein 1s;
 }
 .player-highlight { border: 3px solid #70cdc9; color: #70cdc9; }
 .votes {
